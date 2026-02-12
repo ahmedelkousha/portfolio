@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ahmed Elkousha Portfolio - Cyan & Electric Blue Theme */
+
+@layer base {
+  :root {
+    /* Light Mode - Clean & Professional */
+    --background: 210 20% 98%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    /* Cyan Primary */
+    --primary: 187 100% 42%;
+    --primary-foreground: 220 25% 5%;
+
+    /* Electric Blue Secondary */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 94%;
+    --muted-foreground: 220 10% 40%;
+
+    /* Accent - Gradient blend */
+    --accent: 200 95% 50%;
+    --accent-foreground: 220 25% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 187 100% 42%;
+
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Colors */
+    --cyan: 187 100% 50%;
+    --electric-blue: 217 91% 60%;
+    --glow-cyan: 187 100% 60%;
+    --glow-blue: 217 91% 70%;
+
+    /* Glassmorphism */
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.3;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    /* Dark Mode - Sleek & Modern */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Cyan Primary */
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    /* Electric Blue Secondary */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 222 30% 15%;
+    --muted-foreground: 210 20% 65%;
+
+    /* Accent */
+    --accent: 200 95% 55%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 187 100% 50%;
+
+    /* Custom Portfolio Colors - Dark */
+    --cyan: 187 100% 50%;
+    --electric-blue: 217 91% 60%;
+    --glow-cyan: 187 100% 65%;
+    --glow-blue: 217 91% 75%;
+
+    /* Glassmorphism - Dark */
+    --glass: 222 47% 12% / 0.8;
+    --glass-border: 210 40% 98% / 0.1;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 187 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
+  }
+
+  #root {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply backdrop-blur-xl border rounded-xl;
+    background: hsl(var(--glass));
+    border-color: hsl(var(--glass-border));
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--cyan)), hsl(var(--electric-blue)));
+  }
+
+  /* Glow Effects */
+  .glow-cyan {
+    box-shadow: 0 0 30px hsl(var(--cyan) / 0.4), 0 0 60px hsl(var(--cyan) / 0.2);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 30px hsl(var(--electric-blue) / 0.4), 0 0 60px hsl(var(--electric-blue) / 0.2);
+  }
+
+  .glow-mixed {
+    box-shadow: 
+      0 0 30px hsl(var(--cyan) / 0.3),
+      0 0 60px hsl(var(--electric-blue) / 0.2);
+  }
+
+  /* Gradient Border */
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--cyan)), hsl(var(--electric-blue)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Animated Background Gradient */
+  .animated-gradient {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--background)),
+      hsl(var(--muted)),
+      hsl(var(--cyan) / 0.1),
+      hsl(var(--electric-blue) / 0.1)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Hover Card Effect */
+  .hover-card {
+    @apply transition-all duration-300;
+  }
+
+  .hover-card:hover {
+    @apply -translate-y-2;
+    box-shadow: 
+      0 20px 40px hsl(var(--cyan) / 0.15),
+      0 10px 20px hsl(var(--electric-blue) / 0.1);
+  }
+
+  /* Underline Animation for Links */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+    background: linear-gradient(90deg, hsl(var(--cyan)), hsl(var(--electric-blue)));
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  /* Floating Animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  /* Pulse Glow */
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Spin Slow */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+}
+
+/* Keyframes */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--cyan)), hsl(var(--electric-blue)));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(var(--glow-cyan)), hsl(var(--glow-blue)));
+}
+
+/* Selection Color */
+::selection {
+  background: hsl(var(--cyan) / 0.3);
+  color: hsl(var(--foreground));
+}

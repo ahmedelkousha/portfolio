@@ -137,6 +137,7 @@
 }
 
 @layer components {
+
   /* Glassmorphism Card */
   .glass-card {
     @apply backdrop-blur-xl border rounded-xl;
@@ -160,7 +161,7 @@
   }
 
   .glow-mixed {
-    box-shadow: 
+    box-shadow:
       0 0 30px hsl(var(--cyan) / 0.3),
       0 0 60px hsl(var(--electric-blue) / 0.2);
   }
@@ -185,13 +186,11 @@
 
   /* Animated Background Gradient */
   .animated-gradient {
-    background: linear-gradient(
-      -45deg,
-      hsl(var(--background)),
-      hsl(var(--muted)),
-      hsl(var(--cyan) / 0.1),
-      hsl(var(--electric-blue) / 0.1)
-    );
+    background: linear-gradient(-45deg,
+        hsl(var(--background)),
+        hsl(var(--muted)),
+        hsl(var(--cyan) / 0.1),
+        hsl(var(--electric-blue) / 0.1));
     background-size: 400% 400%;
     animation: gradient-shift 15s ease infinite;
   }
@@ -208,7 +207,7 @@
 
   .hover-card:hover {
     @apply -translate-y-2;
-    box-shadow: 
+    box-shadow:
       0 20px 40px hsl(var(--cyan) / 0.15),
       0 10px 20px hsl(var(--electric-blue) / 0.1);
   }
@@ -230,6 +229,7 @@
 }
 
 @layer utilities {
+
   /* Floating Animation */
   .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -256,28 +256,37 @@
 
 /* Keyframes */
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
@@ -306,4 +315,86 @@
 ::selection {
   background: hsl(var(--cyan) / 0.3);
   color: hsl(var(--foreground));
+}
+
+/* Premium Noise Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 768px) {
+  .menu-toggle-checkbox {
+    display: none;
+  }
+
+  .hamburger-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: hsl(var(--background));
+    border-left: 1px solid hsl(var(--glass-border));
+    padding: 100px 40px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  .menu-toggle-checkbox:checked ~ .nav-links {
+    right: 0;
+  }
+
+  .menu-toggle-checkbox:checked ~ .hamburger-icon .open-icon {
+    display: none;
+  }
+
+  .menu-toggle-checkbox:checked ~ .hamburger-icon .close-icon {
+    display: block;
+  }
+
+  .close-icon {
+    display: none;
+  }
+}
+
+/* Accessibility & Utils */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+[draggable="false"] {
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

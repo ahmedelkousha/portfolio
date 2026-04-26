@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin, Github, Linkedin, MessageCircle } from "lucide-react";
+import { Send, Mail, Phone, MapPin, Github, Linkedin, MessageCircle, Loader2 } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
@@ -8,9 +8,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { portfolioService } from "@/services/portfolioService";
 
 export const Contact = () => {
   const { toast } = useToast();
+  const [info, setInfo] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +21,22 @@ export const Contact = () => {
     subject: "",
     message: "",
   });
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const data = await portfolioService.getPersonalInfo();
+        if (data) setInfo(data);
+      } catch (error) {
+        console.error("Error fetching contact info:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchInfo();
+  }, []);
+
+  const displayInfo = info || personalInfo;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,7 +46,7 @@ export const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate inputs
     const name = formData.name.trim();
     const email = formData.email.trim();
@@ -56,59 +75,72 @@ export const Contact = () => {
 
     setIsSubmitting(true);
 
-    // Construct WhatsApp message
-    const whatsappMessage = `*New Contact Form Submission*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Subject:* ${encodeURIComponent(subject)}%0A%0A*Message:*%0A${encodeURIComponent(message)}`;
-    
-    const whatsappNumber = "201011788540";
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+    try {
+      // Save to Firebase
+      await portfolioService.saveMessage({
+        name,
+        email,
+        subject,
+        message
+      });
 
-    // Open WhatsApp in new tab
-    window.open(whatsappUrl, "_blank");
+      toast({
+        title: "Message Sent!",
+        description: "Your message has been received. I'll get back to you soon!",
+      });
 
-    toast({
-      title: "Redirecting to WhatsApp",
-      description: "Your message is ready to send via WhatsApp!",
-    });
-
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+      // Clear form
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error: any) {
+      console.error("Submission error:", error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: personalInfo.email,
-      href: `mailto:${personalInfo.email}`,
+      value: displayInfo.email,
+      href: `mailto:${displayInfo.email}`,
     },
     {
       icon: Phone,
       label: "Phone",
-      value: personalInfo.phone,
-      href: `tel:${personalInfo.phone}`,
+      value: displayInfo.phone,
+      href: `tel:${displayInfo.phone}`,
     },
     {
       icon: MapPin,
       label: "Location",
-      value: personalInfo.location,
+      value: displayInfo.location,
       href: "#",
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: personalInfo.github, label: "GitHub" },
-    { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn" },
+    { icon: Github, href: displayInfo.github, label: "GitHub" },
+    { icon: Linkedin, href: displayInfo.linkedin, label: "LinkedIn" },
     {
       icon: MessageCircle,
-      href: `https://wa.me/${personalInfo.phone.replace(/\+/g, "")}`,
+      href: `https://wa.me/${(displayInfo.phone || "").replace(/\+/g, "")}`,
       label: "WhatsApp",
     },
-    {
-      icon: Phone,
-      href: `skype:${personalInfo.skype}?chat`,
-      label: "Skype",
-    },
   ];
+
+  if (loading && !info) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <section id="contact" className="py-20">

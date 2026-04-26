@@ -23,10 +23,10 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group glass-card rounded-2xl overflow-hidden hover-card h-full"
+    className="group glass-card rounded-2xl overflow-hidden hover-card flex flex-col"
   >
     {/* Project Image */}
-    <div className="relative h-64 overflow-hidden bg-muted">
+    <div className="relative aspect-video w-full overflow-hidden bg-muted">
       {/* Website Preview */}
       <ProjectPreview url={project.liveDemo} title={project.title} image={project.image} />
 
@@ -188,7 +188,7 @@ export const Projects = () => {
                   className="glass-card rounded-2xl overflow-hidden hover-card group border border-border/50"
                 >
                   {/* Small Preview for Other Projects */}
-                  <div className="h-48 relative overflow-hidden bg-muted">
+                  <div className="aspect-video w-full relative overflow-hidden bg-muted">
                     <ProjectPreview url={project.liveDemo} title={project.title} image={project.image} />
                     <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                       <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-black rounded-full hover:bg-primary hover:text-white transition-all">

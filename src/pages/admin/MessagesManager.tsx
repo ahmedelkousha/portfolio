@@ -107,11 +107,11 @@ const MessagesManager = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-black text-foreground">Inquiries</h1>
-          <p className="text-muted-foreground mt-2">Manage your client inquiries and leads</p>
+          <h1 className="text-2xl md:text-3xl font-black text-foreground">Inquiries</h1>
+          <p className="text-muted-foreground mt-1 text-sm md:text-base">Manage client inquiries and leads</p>
         </div>
 
         <div className="relative w-full md:w-72">
@@ -121,13 +121,13 @@ const MessagesManager = () => {
             placeholder="Search messages..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-muted/50 border border-border/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 md:py-2 bg-muted/50 border border-border/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
           />
         </div>
       </header>
 
       {/* Tabs */}
-      <div className="flex p-1 bg-muted/50 rounded-2xl w-fit">
+      <div className="flex p-1 bg-muted/50 rounded-2xl w-full sm:w-fit overflow-x-auto no-scrollbar">
         {[
           { id: "active", label: "Active", count: stats.active, icon: Inbox },
           { id: "read", label: "Read", count: stats.read, icon: CheckCircle },
@@ -136,16 +136,16 @@ const MessagesManager = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
+            className={`flex items-center justify-center gap-2 px-4 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all whitespace-nowrap flex-1 sm:flex-none ${
               activeTab === tab.id 
               ? "bg-background text-primary shadow-sm" 
               : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            <tab.icon size={16} />
+            <tab.icon size={14} className="md:w-4 md:h-4" />
             {tab.label}
             {tab.count > 0 && (
-              <span className={`ml-1 px-2 py-0.5 rounded-full text-[10px] ${
+              <span className={`ml-1 px-1.5 py-0.5 rounded-full text-[10px] ${
                 activeTab === tab.id ? "bg-primary text-primary-foreground" : "bg-muted-foreground/20 text-muted-foreground"
               }`}>
                 {tab.count}
@@ -158,18 +158,18 @@ const MessagesManager = () => {
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20 gap-4">
           <Loader2 className="h-10 w-10 animate-spin text-primary" />
-          <p className="text-muted-foreground animate-pulse">Loading inquiries...</p>
+          <p className="text-muted-foreground animate-pulse text-sm">Loading inquiries...</p>
         </div>
       ) : filteredMessages.length === 0 ? (
-        <div className="glass-card p-20 rounded-3xl text-center space-y-4">
-          <div className="h-20 w-20 bg-muted rounded-full flex items-center justify-center mx-auto">
-            <Inbox className="h-10 w-10 text-muted-foreground" />
+        <div className="glass-card p-10 md:p-20 rounded-[2rem] md:rounded-3xl text-center space-y-4">
+          <div className="h-16 w-16 md:h-20 md:w-20 bg-muted rounded-full flex items-center justify-center mx-auto">
+            <Inbox className="h-8 w-8 md:h-10 md:w-10 text-muted-foreground" />
           </div>
-          <h3 className="text-xl font-bold text-foreground">No {activeTab} messages</h3>
-          <p className="text-muted-foreground">Everything is clear for now!</p>
+          <h3 className="text-lg md:text-xl font-bold text-foreground">No {activeTab} messages</h3>
+          <p className="text-sm text-muted-foreground">Everything is clear for now!</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           <AnimatePresence mode="popLayout">
             {filteredMessages.map((message, index) => (
               <motion.div
@@ -179,39 +179,39 @@ const MessagesManager = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: index * 0.05 }}
-                className={`glass-card rounded-2xl overflow-hidden border-l-4 transition-all ${
+                className={`glass-card rounded-2xl md:rounded-[2rem] overflow-hidden border-l-4 transition-all ${
                   message.read ? "border-l-transparent" : "border-l-primary shadow-lg shadow-primary/5"
                 }`}
               >
                 <div 
-                  className="p-5 cursor-pointer hover:bg-muted/30 transition-colors"
+                  className="p-4 md:p-5 cursor-pointer hover:bg-muted/30 transition-colors"
                   onClick={() => setExpandedMessage(expandedMessage === message.id ? null : message.id)}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className={`h-12 w-12 rounded-full flex items-center justify-center font-bold text-lg ${
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-3 md:gap-4">
+                      <div className={`h-10 w-10 md:h-12 md:w-12 rounded-full shrink-0 flex items-center justify-center font-bold text-base md:text-lg ${
                         message.read ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary"
                       }`}>
                         {message.name.charAt(0).toUpperCase()}
                       </div>
-                      <div>
-                        <h3 className={`font-bold transition-colors ${message.read ? "text-foreground/70" : "text-foreground"}`}>
+                      <div className="min-w-0">
+                        <h3 className={`font-bold truncate transition-colors text-sm md:text-base ${message.read ? "text-foreground/70" : "text-foreground"}`}>
                           {message.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Mail size={12} /> {message.email}
+                        <p className="text-xs text-muted-foreground flex items-center gap-1.5 truncate">
+                          <Mail size={12} className="shrink-0" /> {message.email}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
-                      <div className="hidden md:block text-right">
-                        <p className="font-semibold text-sm">{message.subject}</p>
-                        <p className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-1">
+                    <div className="flex items-center justify-between sm:justify-end gap-3 md:gap-6 border-t sm:border-none pt-3 sm:pt-0">
+                      <div className="text-left sm:text-right">
+                        <p className="font-semibold text-xs md:text-sm line-clamp-1">{message.subject}</p>
+                        <p className="text-[10px] md:text-xs text-muted-foreground flex items-center sm:justify-end gap-1 mt-0.5">
                           <Clock size={10} /> {format(new Date(message.createdAt), "MMM d, h:mm a")}
                         </p>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1 md:gap-2">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -224,7 +224,7 @@ const MessagesManager = () => {
                           }`}
                           title={message.read ? "Mark as unread" : "Mark as read"}
                         >
-                          <CheckCircle size={18} />
+                          <CheckCircle size={16} className="md:w-[18px] md:h-[18px]" />
                         </button>
                         <button
                           onClick={(e) => {
@@ -234,7 +234,7 @@ const MessagesManager = () => {
                           className="p-2 text-muted-foreground hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
                           title={message.archived ? "Restore to inbox" : "Archive message"}
                         >
-                          {message.archived ? <ArchiveRestore size={18} /> : <Archive size={18} />}
+                          {message.archived ? <ArchiveRestore size={16} className="md:w-[18px] md:h-[18px]" /> : <Archive size={16} className="md:w-[18px] md:h-[18px]" />}
                         </button>
                         <button
                           onClick={(e) => {
@@ -244,10 +244,10 @@ const MessagesManager = () => {
                           className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-all"
                           title="Permanently delete"
                         >
-                          <Trash2 size={18} />
+                          <Trash2 size={16} className="md:w-[18px] md:h-[18px]" />
                         </button>
-                        <div className="text-muted-foreground ml-2">
-                          {expandedMessage === message.id ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                        <div className="text-muted-foreground ml-1">
+                          {expandedMessage === message.id ? <ChevronUp size={16} className="md:w-[18px] md:h-[18px]" /> : <ChevronDown size={16} className="md:w-[18px] md:h-[18px]" />}
                         </div>
                       </div>
                     </div>
@@ -262,22 +262,22 @@ const MessagesManager = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden bg-muted/20 border-t border-border/50"
                     >
-                      <div className="p-6 space-y-4">
+                      <div className="p-5 md:p-6 space-y-4">
                         <div className="flex items-start gap-3">
-                          <MessageSquare className="h-5 w-5 text-primary mt-1 shrink-0" />
+                          <MessageSquare className="h-4 w-4 md:h-5 md:w-5 text-primary mt-1 shrink-0" />
                           <div className="space-y-2">
-                            <p className="font-bold text-sm uppercase tracking-wider text-muted-foreground">Message Body</p>
-                            <p className="text-foreground leading-relaxed whitespace-pre-wrap">
+                            <p className="font-bold text-[10px] md:text-sm uppercase tracking-wider text-muted-foreground">Message Body</p>
+                            <p className="text-sm md:text-base text-foreground leading-relaxed whitespace-pre-wrap">
                               {message.message}
                             </p>
                           </div>
                         </div>
                         
-                        <div className="pt-4 flex justify-end">
+                        <div className="pt-2 md:pt-4 flex justify-end">
                           <Button 
                             variant="outline" 
                             size="sm" 
-                            className="rounded-xl"
+                            className="rounded-xl text-xs md:text-sm h-9 md:h-10 px-4"
                             asChild
                           >
                             <a href={`mailto:${message.email}?subject=Re: ${message.subject}`}>

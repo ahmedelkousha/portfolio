@@ -11,29 +11,24 @@ interface ProjectPreviewProps {
 export const ProjectPreview = ({ url, title, image }: ProjectPreviewProps) => {
   const [isReady, setIsReady] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const isValidUrl = url && url !== "#";
-  
-  // Determine initial image source
-  // If image is provided, use it. Otherwise, if url is valid, try microlink screenshot.
-  const [imgSrc, setImgSrc] = useState<string>(
-    image || (isValidUrl ? `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url` : "")
-  );
+
+  // Use provided image or null
+  const [imgSrc, setImgSrc] = useState<string | null>(image || null);
 
   useEffect(() => {
-    // Update imgSrc if image or url changes
     if (image) {
       setImgSrc(image);
-    } else if (isValidUrl) {
-      setImgSrc(`https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url`);
+      setHasError(false);
     } else {
+      setImgSrc(null);
       setHasError(true);
     }
-  }, [image, url, isValidUrl]);
+  }, [image]);
 
-  if (hasError || (!image && !isValidUrl)) {
+  if (hasError || !imgSrc) {
     return (
       <div className="absolute inset-0 bg-muted flex items-center justify-center p-6 text-center">
-        <div className="space-y-2 opacity-50">
+        <div className="space-y-2 opacity-30">
           <ImageIcon className="h-10 w-10 mx-auto text-muted-foreground" />
           <p className="text-xs font-mono uppercase tracking-widest">{title}</p>
         </div>
@@ -48,25 +43,16 @@ export const ProjectPreview = ({ url, title, image }: ProjectPreviewProps) => {
         <Skeleton className="absolute inset-0 w-full h-full" />
       )}
 
-      {/* Main Image (Custom or Auto-Screenshot) */}
+      {/* Main Image (Uploaded only) */}
       <img
         src={imgSrc}
         alt={`${title} preview`}
         onLoad={() => setIsReady(true)}
-        onError={() => {
-          // Fallback logic if the primary image fails
-          if (imgSrc === image && isValidUrl) {
-            // If the custom image failed, try microlink
-            setImgSrc(`https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url`);
-          } else {
-            setHasError(true);
-          }
-        }}
-        className={`w-full h-full object-cover transition-all duration-700 ${
-          isReady ? "opacity-100 scale-100" : "opacity-0 scale-105"
-        } group-hover:scale-105`}
+        onError={() => setHasError(true)}
+        className={`w-full h-full object-cover transition-all duration-700 ${isReady ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          } group-hover:scale-105`}
       />
-      
+
       {/* Subtle overlay for better text readability if needed */}
       <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
     </div>

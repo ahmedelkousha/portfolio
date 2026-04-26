@@ -42,14 +42,14 @@ const PersonalInfoManager = () => {
   }
 
   return (
-    <div className="space-y-8 max-w-4xl">
+    <div className="space-y-6 md:space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-3xl font-black text-foreground">Personal Information</h1>
-        <p className="text-muted-foreground mt-1">Update your basic info, bio, and social links</p>
+        <h1 className="text-2xl md:text-3xl font-black text-foreground">Personal Information</h1>
+        <p className="text-muted-foreground mt-1 text-sm md:text-base">Update your basic info, bio, and social links</p>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-8">
-        <div className="glass-card p-8 rounded-3xl space-y-6">
+      <form onSubmit={handleSave} className="space-y-6 md:space-y-8">
+        <div className="glass-card p-5 md:p-8 rounded-[2rem] md:rounded-3xl space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
@@ -60,7 +60,7 @@ const PersonalInfoManager = () => {
                 value={formData.name || ""}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
               />
             </div>
             <div className="space-y-2">
@@ -70,7 +70,7 @@ const PersonalInfoManager = () => {
                 value={formData.role || ""}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                 required
-                className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ const PersonalInfoManager = () => {
               type="text"
               value={formData.tagline || ""}
               onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-              className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+              className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
             />
           </div>
 
@@ -92,14 +92,14 @@ const PersonalInfoManager = () => {
               onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
               required
               rows={6}
-              className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none leading-relaxed"
+              className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none leading-relaxed text-sm md:text-base"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="glass-card p-8 rounded-3xl space-y-6">
-            <h2 className="text-xl font-bold flex items-center gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="glass-card p-5 md:p-8 rounded-[2rem] md:rounded-3xl space-y-6">
+            <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
               Contact Details
             </h2>
             <div className="space-y-4">
@@ -111,7 +111,7 @@ const PersonalInfoManager = () => {
                   type="email"
                   value={formData.email || ""}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none"
+                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                 />
               </div>
               <div className="space-y-2">
@@ -122,7 +122,7 @@ const PersonalInfoManager = () => {
                   type="text"
                   value={formData.phone || ""}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none"
+                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                 />
               </div>
               <div className="space-y-2">
@@ -133,14 +133,14 @@ const PersonalInfoManager = () => {
                   type="text"
                   value={formData.location || ""}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none"
+                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                 />
               </div>
             </div>
           </div>
 
-          <div className="glass-card p-8 rounded-3xl space-y-6">
-            <h2 className="text-xl font-bold flex items-center gap-2">
+          <div className="glass-card p-5 md:p-8 rounded-[2rem] md:rounded-3xl space-y-6">
+            <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
               Links & Resume
             </h2>
             <div className="space-y-4">
@@ -152,7 +152,7 @@ const PersonalInfoManager = () => {
                   type="text"
                   value={formData.github || ""}
                   onChange={(e) => setFormData({ ...formData, github: e.target.value })}
-                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none"
+                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                 />
               </div>
               <div className="space-y-2">
@@ -163,7 +163,7 @@ const PersonalInfoManager = () => {
                   type="text"
                   value={formData.linkedin || ""}
                   onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
-                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none"
+                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                 />
               </div>
               <div className="space-y-2">
@@ -174,7 +174,7 @@ const PersonalInfoManager = () => {
                   type="text"
                   value={formData.cvUrl || ""}
                   onChange={(e) => setFormData({ ...formData, cvUrl: e.target.value })}
-                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none"
+                  className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                 />
               </div>
             </div>
@@ -185,7 +185,7 @@ const PersonalInfoManager = () => {
           <button
             type="submit"
             disabled={saving}
-            className="px-12 py-4 rounded-2xl bg-primary text-primary-foreground font-black text-lg hover:bg-primary/90 transition-all flex items-center gap-3 shadow-xl shadow-primary/30 disabled:opacity-50"
+            className="w-full md:w-auto px-12 py-4 rounded-2xl bg-primary text-primary-foreground font-black text-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-3 shadow-xl shadow-primary/30 disabled:opacity-50"
           >
             {saving ? <Loader2 className="animate-spin" size={24} /> : <Save size={24} />}
             {saving ? "Updating..." : "Update Profile"}

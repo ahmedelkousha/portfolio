@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
-import { experience } from "@/data/portfolio";
+import { Briefcase, Calendar, MapPin, Loader2 } from "lucide-react";
+import { experience as staticExperience } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
+import { usePortfolioData } from "@/hooks/usePortfolioData";
 
 export const Experience = () => {
+  const { data: dbExperience, loading } = usePortfolioData("experience");
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = experience[activeIndex];
+
+  const displayExperience = dbExperience.length > 0 ? dbExperience : staticExperience;
+  const active = displayExperience[activeIndex];
+
+  if (loading && dbExperience.length === 0) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!active) return null;
 
   return (
     <section id="experience" className="py-20">
@@ -20,15 +34,14 @@ export const Experience = () => {
           <div className="flex flex-col md:flex-row gap-6">
             {/* Tab List */}
             <div className="flex md:flex-col gap-2 md:w-64 shrink-0 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
-              {experience.map((exp, index) => (
+              {displayExperience.map((exp, index) => (
                 <button
                   key={exp.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`relative text-left px-4 py-3 rounded-xl transition-all duration-300 whitespace-nowrap md:whitespace-normal ${
-                    activeIndex === index
+                  className={`relative text-left px-4 py-3 rounded-xl transition-all duration-300 whitespace-nowrap md:whitespace-normal ${activeIndex === index
                       ? "glass-card text-foreground glow-mixed"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  }`}
+                    }`}
                 >
                   {activeIndex === index && (
                     <motion.div
@@ -59,7 +72,7 @@ export const Experience = () => {
                   className="glass-card p-6 sm:p-8 rounded-2xl"
                 >
                   {/* Header */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
+                  <h3 className="text-lg sm:text-2xl font-bold text-foreground mb-1">
                     {active.role}
                   </h3>
                   <p className="text-primary font-semibold text-base sm:text-lg mb-4">

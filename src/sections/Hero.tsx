@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin, Briefcase } from "lucide-react";
+import { ArrowDown, Download, Github, Linkedin, Briefcase, Eye, Loader2 } from "lucide-react";
 import { personalInfo, stats, openToRoles } from "@/data/portfolio";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Button } from "@/components/ui/button";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { useCountUp } from "@/hooks/useCountUp";
+import { useState, useEffect } from "react";
+import { portfolioService } from "@/services/portfolioService";
 
 const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => {
   // Extract number from stat value (e.g., "3+" -> 3)
@@ -30,18 +32,46 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
 };
 
 export const Hero = () => {
+  const [info, setInfo] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const data = await portfolioService.getPersonalInfo();
+        if (data) setInfo(data);
+      } catch (error) {
+        console.error("Error fetching hero info:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchInfo();
+  }, []);
+
   const roles = [
     "Full-Stack MERN Developer",
+    "React.js Developer",
     "Next.js Developer",
-    "SEO Specialist",
     "Web Performance Expert",
+    "SEO Specialist",
   ];
-  
+
   const typedRole = useTypingEffect(roles, 100, 50, 2000);
 
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const displayInfo = info || personalInfo; // Fallback to static data
+
+  if (loading && !info) {
+    return (
+      <section className="min-h-[100svh] flex items-center justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </section>
+    );
+  }
 
   return (
     <section
@@ -69,7 +99,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
           >
-            <span className="gradient-text">{personalInfo.name}</span>
+            <span className="gradient-text">{displayInfo.name}</span>
           </motion.h1>
 
           {/* Role with Typing Effect */}
@@ -90,11 +120,11 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8"
           >
-            {personalInfo.tagline}
+            {displayInfo.tagline}
           </motion.p>
 
           {/* Open to Work Badge - Positioned after tagline */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.35 }}
@@ -107,10 +137,10 @@ export const Hero = () => {
               </span>
               <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Available for Opportunities</span>
               <Briefcase className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-            </div>
-            
+            </div> */}
+
             {/* Role Tags */}
-            <div className="flex flex-wrap justify-center gap-2">
+            {/* <div className="flex flex-wrap justify-center gap-2">
               {openToRoles.map((role) => (
                 <span
                   key={role}
@@ -120,7 +150,7 @@ export const Hero = () => {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA Buttons */}
           <motion.div
@@ -139,12 +169,12 @@ export const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-primary text-primary hover:bg-primary/10 font-semibold px-8"
+              className="border-primary text-primary hover:bg-gradient-cyan-blue font-semibold px-8"
               asChild
             >
-              <a href={personalInfo.cvUrl} download>
-                <Download className="mr-2 h-4 w-4" />
-                Download CV
+              <a href={displayInfo.cvUrl} target="_blank">
+                <Eye className="mr-2 h-4 w-4" />
+                View Resume
               </a>
             </Button>
           </motion.div>
@@ -157,7 +187,7 @@ export const Hero = () => {
             className="flex justify-center gap-4 mb-16"
           >
             <motion.a
-              href={personalInfo.github}
+              href={displayInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 glass-card rounded-full hover:glow-cyan transition-all"
@@ -167,7 +197,7 @@ export const Hero = () => {
               <Github className="h-5 w-5 text-foreground" />
             </motion.a>
             <motion.a
-              href={personalInfo.linkedin}
+              href={displayInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 glass-card rounded-full hover:glow-blue transition-all"
@@ -192,7 +222,7 @@ export const Hero = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
@@ -206,7 +236,7 @@ export const Hero = () => {
             <span className="text-xs font-mono">Scroll Down</span>
             <ArrowDown className="h-4 w-4" />
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

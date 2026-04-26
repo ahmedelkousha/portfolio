@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { navLinks, personalInfo } from "@/data/portfolio";
+import { portfolioService } from "@/services/portfolioService";
 
 export const Navbar = () => {
+  const [info, setInfo] = useState<any>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -13,8 +15,21 @@ export const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+
+    const fetchInfo = async () => {
+      try {
+        const data = await portfolioService.getPersonalInfo();
+        if (data) setInfo(data);
+      } catch (error) {
+        console.error("Error fetching navbar info:", error);
+      }
+    };
+    fetchInfo();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const displayInfo = info || personalInfo;
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -29,11 +44,10 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "glass-card py-3 shadow-lg"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "glass-card py-3 shadow-lg border-0"
           : "bg-transparent py-5"
-      }`}
+        }`}
     >
       <div className="section-container">
         <div className="flex items-center justify-between">
@@ -47,7 +61,7 @@ export const Navbar = () => {
               handleNavClick("#home");
             }}
           >
-            {personalInfo.name.split(" ")[0]}
+            {displayInfo.name.split(" ")[0]}
             <span className="text-foreground">.</span>
           </motion.a>
 

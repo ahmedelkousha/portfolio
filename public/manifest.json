@@ -1,0 +1,21 @@
+{
+  "name": "Ahmed Maher | Full-Stack Developer",
+  "short_name": "Ahmed Portfolio",
+  "description": "Professional portfolio showcasing web development projects and technical SEO expertise.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030014",
+  "theme_color": "#00f2fe",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

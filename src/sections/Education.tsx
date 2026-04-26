@@ -1,9 +1,21 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin } from "lucide-react";
-import { education } from "@/data/portfolio";
+import { GraduationCap, Calendar, MapPin, Loader2 } from "lucide-react";
+import { education as staticEducation } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
+import { usePortfolioData } from "@/hooks/usePortfolioData";
 
 export const Education = () => {
+  const { data: dbEducation, loading } = usePortfolioData("education");
+  const displayEducation = dbEducation.length > 0 ? dbEducation : staticEducation;
+
+  if (loading && dbEducation.length === 0) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <section className="py-20 bg-muted/30">
       <div className="section-container">
@@ -13,14 +25,14 @@ export const Education = () => {
         />
 
         <div className="max-w-2xl mx-auto">
-          {education.map((edu, index) => (
+          {displayEducation.map((edu, index) => (
             <motion.div
               key={edu.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-8 rounded-2xl hover-card"
+              className="glass-card p-8 rounded-2xl hover-card mb-6"
             >
               {/* Icon */}
               <div className="flex items-start gap-6">
@@ -36,12 +48,12 @@ export const Education = () => {
 
                 <div className="flex-1">
                   {/* Degree */}
-                  <h3 className="text-xl font-bold text-foreground mb-2">
+                  <h3 className="sm:text-xl text-lg font-bold text-foreground mb-2">
                     {edu.degree}
                   </h3>
 
                   {/* Institution */}
-                  <p className="text-lg text-primary font-semibold mb-3">
+                  <p className="sm:text-lg text-base text-primary font-semibold mb-3">
                     {edu.institution}
                   </p>
 

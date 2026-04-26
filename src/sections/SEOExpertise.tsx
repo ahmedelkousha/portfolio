@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Settings, Gauge, Code, Zap, Network, Smartphone } from "lucide-react";
-import { seoExpertise } from "@/data/portfolio";
+import { Settings, Gauge, Code, Zap, Network, Smartphone, Loader2 } from "lucide-react";
+import { seoExpertise as staticSeoExpertise } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
+import { usePortfolioData } from "@/hooks/usePortfolioData";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Settings,
@@ -13,6 +14,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export const SEOExpertise = () => {
+  const { data: dbSeo, loading } = usePortfolioData("seoExpertise");
+  const displaySeo = dbSeo.length > 0 ? dbSeo : staticSeoExpertise;
+
   return (
     <section id="seo-expertise" className="py-20 bg-muted/30">
       <div className="section-container">
@@ -21,8 +25,14 @@ export const SEOExpertise = () => {
           subtitle="Technical SEO skills that drive organic growth and search visibility"
         />
 
+        {loading && dbSeo.length === 0 && (
+          <div className="flex justify-center py-8">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        )}
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {seoExpertise.map((item, index) => {
+          {displaySeo.map((item, index) => {
             const IconComponent = iconMap[item.icon] || Settings;
             
             return (

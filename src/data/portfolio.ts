@@ -11,13 +11,14 @@ export const personalInfo = {
   github: "https://github.com/ahmedelkousha",
   linkedin: "https://linkedin.com/in/ahmedelkousha",
   skype: "ahmedmayo54",
-  cvUrl: "/cv/Ahmed_Maher_CV.pdf",
+  cvUrl: "https://drive.google.com/file/d/1ujODr6dCumJy7-gPTeDSLWjFCVmf0h7C/view?usp=sharing",
+  profileImage: "/profile.jpg",
 };
 
 export const stats = [
   { label: "Years Experience", value: "4+" },
-  { label: "Projects Completed", value: "25+" },
-  { label: "Happy Clients", value: "20+" },
+  { label: "Projects Completed", value: "45+" },
+  { label: "Happy Clients", value: "35+" },
   { label: "Technologies", value: "15+" },
 ];
 
@@ -39,14 +40,61 @@ export const skills = {
     { name: "Auth & Security", level: 85 },
   ],
   tools: [
+    { name: "Git & GitHub", level: 88 },
+    { name: "Google Search Console", level: 90 },
+    { name: "Lighthouse", level: 92 },
+    { name: "Postman", level: 88 },
+    { name: "Vercel", level: 85 },
+    { name: "Docker", level: 80 },
+  ],
+  seo: [
     { name: "Technical SEO", level: 92 },
     { name: "Core Web Vitals", level: 90 },
     { name: "Schema.org", level: 88 },
     { name: "Page Speed", level: 90 },
     { name: "Site Architecture", level: 85 },
-    { name: "Git & GitHub", level: 88 },
+    { name: "Mobile Optimization", level: 88 },
   ],
 };
+
+export const seoExpertise = [
+  {
+    id: 1,
+    title: "Technical SEO",
+    description: "Site architecture, crawlability, indexability, XML sitemaps, robots.txt optimization, and server-side rendering for search engines.",
+    icon: "Settings",
+  },
+  {
+    id: 2,
+    title: "Core Web Vitals",
+    description: "Optimizing LCP, CLS, and INP for better user experience and higher search rankings through performance audits and fixes.",
+    icon: "Gauge",
+  },
+  {
+    id: 3,
+    title: "Schema.org Markup",
+    description: "Implementing structured data for rich snippets, knowledge panels, and enhanced search visibility across all content types.",
+    icon: "Code",
+  },
+  {
+    id: 4,
+    title: "Page Speed",
+    description: "Image optimization, code splitting, lazy loading, and caching strategies to achieve fast load times across all devices.",
+    icon: "Zap",
+  },
+  {
+    id: 5,
+    title: "Site Architecture",
+    description: "URL structure, internal linking, navigation hierarchy, and content organization for optimal crawl efficiency.",
+    icon: "Network",
+  },
+  {
+    id: 6,
+    title: "Mobile Optimization",
+    description: "Responsive design, mobile-first indexing compliance, and touch-friendly interfaces for seamless mobile experiences.",
+    icon: "Smartphone",
+  },
+];
 
 export const projects = [
   {
@@ -106,45 +154,6 @@ export const projects = [
   },
 ];
 
-export const seoExpertise = [
-  {
-    id: 1,
-    title: "Technical SEO",
-    description: "Site architecture, crawlability, indexability, XML sitemaps, robots.txt optimization, and server-side rendering for search engines.",
-    icon: "Settings",
-  },
-  {
-    id: 2,
-    title: "Core Web Vitals",
-    description: "Optimizing LCP, CLS, and INP for better user experience and higher search rankings through performance audits and fixes.",
-    icon: "Gauge",
-  },
-  {
-    id: 3,
-    title: "Schema.org Markup",
-    description: "Implementing structured data for rich snippets, knowledge panels, and enhanced search visibility across all content types.",
-    icon: "Code",
-  },
-  {
-    id: 4,
-    title: "Page Speed",
-    description: "Image optimization, code splitting, lazy loading, and caching strategies to achieve fast load times across all devices.",
-    icon: "Zap",
-  },
-  {
-    id: 5,
-    title: "Site Architecture",
-    description: "URL structure, internal linking, navigation hierarchy, and content organization for optimal crawl efficiency.",
-    icon: "Network",
-  },
-  {
-    id: 6,
-    title: "Mobile Optimization",
-    description: "Responsive design, mobile-first indexing compliance, and touch-friendly interfaces for seamless mobile experiences.",
-    icon: "Smartphone",
-  },
-];
-
 export const experience = [
   {
     id: 1,
@@ -188,6 +197,45 @@ export const education = [
     period: "2014 - 2019",
     description:
       "Focused on digital systems, signal processing, and embedded systems. Developed strong analytical and problem-solving skills applicable to software development.",
+  },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    role: "Marketing Director",
+    company: "Aura Marketing SA",
+    content:
+      "Ahmed transformed our online presence completely. Our website now ranks on the first page for all our target keywords, and page load times improved by 60%. His expertise in both development and SEO is truly rare.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    role: "Founder & CEO",
+    company: "Pure Touch US",
+    content:
+      "Working with Ahmed was a game-changer for our e-commerce platform. He optimized our site architecture, implemented structured data, and our organic traffic increased by 150% within 3 months. Highly recommended!",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Emily Rodriguez",
+    role: "Product Manager",
+    company: "TechStart Solutions",
+    content:
+      "Ahmed's technical skills are exceptional. He built a complex dashboard application that exceeded our expectations. Clean code, excellent documentation, and delivered ahead of schedule.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "David Williams",
+    role: "Operations Head",
+    company: "Global Realty Partners",
+    content:
+      "The real estate platform Ahmed developed for us handles thousands of listings seamlessly. His attention to performance optimization and SEO best practices made a significant impact on our business.",
+    rating: 5,
   },
 ];
 

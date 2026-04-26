@@ -1,9 +1,30 @@
 import { motion } from "framer-motion";
-import { MapPin, Mail, Phone, Code2, Users, Rocket } from "lucide-react";
+import { MapPin, Mail, Phone, Code2, Users, Rocket, MessageCircle, Loader2 } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
+import { useState, useEffect } from "react";
+import { portfolioService } from "@/services/portfolioService";
 
 export const About = () => {
+  const [info, setInfo] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const data = await portfolioService.getPersonalInfo();
+        if (data) setInfo(data);
+      } catch (error) {
+        console.error("Error fetching about info:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchInfo();
+  }, []);
+
+  const displayInfo = info || personalInfo;
+
   const highlights = [
     {
       icon: Code2,
@@ -22,6 +43,14 @@ export const About = () => {
     },
   ];
 
+  if (loading && !info) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="section-container">
@@ -30,51 +59,105 @@ export const About = () => {
           subtitle="Get to know the developer behind the code"
         />
 
-        <div className="max-w-4xl mx-auto">
-          {/* Bio Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Hi, I'm <span className="gradient-text">{personalInfo.name}</span>
-            </h3>
-            
-            <p className="text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-              {personalInfo.bio}
-            </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Image Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="relative group max-w-sm mx-auto lg:mx-0">
+                {/* Animated Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                
+                {/* Image Container */}
+                <div className="relative aspect-[4/5] sm:aspect-square overflow-hidden rounded-2xl border-2 border-primary/20 bg-muted shadow-2xl">
+                  <img
+                    src={displayInfo.profileImage}
+                    alt={displayInfo.name}
+                    className="object-cover object-top w-full h-full transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  
+                  {/* Overlay Decoration */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <p className="text-sm font-medium text-primary-foreground drop-shadow-md">
+                      {displayInfo.role}
+                    </p>
+                  </div>
+                </div>
 
-            {/* Contact Info */}
-            <div className="flex flex-wrap justify-center gap-6 mb-8">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span>{personalInfo.location}</span>
+                {/* Decorative Elements */}
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl -z-10"></div>
+                <div className="absolute -top-4 -left-4 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -z-10"></div>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="h-5 w-5 text-primary" />
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="hover:text-primary transition-colors"
-                >
-                  {personalInfo.email}
-                </a>
+            </motion.div>
+
+            {/* Content Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-3xl font-bold mb-6 text-foreground text-center lg:text-left">
+                Hi, I'm <span className="gradient-text">{displayInfo.name}</span>
+              </h3>
+
+              <p className="text-muted-foreground mb-8 leading-relaxed text-base text-left">
+                {displayInfo.bio}
+              </p>
+
+              {/* Contact Info */}
+              <div className="grid md:grid-cols-2 grid-cols-1 flex-wrap lg:justify-start gap-4 mb-8">
+                <div className="flex items-center gap-2 text-muted-foreground group">
+                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-sm font-medium">{displayInfo.location}</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground group">
+                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <a
+                    href={`mailto:${displayInfo.email}`}
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {displayInfo.email}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground group">
+                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <a
+                    href={`tel:${displayInfo.phone}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {displayInfo.phone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground group">
+                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <MessageCircle className="h-5 w-5 text-primary" />
+                  </div>
+                  <a
+                    href={`https://wa.me/${(displayInfo.phone || "").replace(/\+/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {displayInfo.phone}
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="h-5 w-5 text-primary" />
-                <a
-                  href={`https://wa.me/${personalInfo.phone.replace(/\+/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors"
-                >
-                  {personalInfo.phone}
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Highlights */}
           <div className="grid sm:grid-cols-3 gap-6">

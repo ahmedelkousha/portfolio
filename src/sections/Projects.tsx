@@ -166,66 +166,60 @@ export const Projects = () => {
         )}
 
         {/* Other Projects */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="text-xl font-bold text-center mb-6 text-foreground">
-            Other Noteworthy Projects
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {otherProjects.map((project: any, index: number) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass-card p-5 rounded-xl hover-card group"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h4>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Github className="h-4 w-4" />
-                    </a>
-                    <a
-                      href={project.liveDemo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
+        {otherProjects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-20"
+          >
+            <h3 className="text-2xl font-bold text-center mb-10 text-foreground">
+              Other Noteworthy Projects
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherProjects.map((project: any, index: number) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="glass-card rounded-2xl overflow-hidden hover-card group border border-border/50"
+                >
+                  {/* Small Preview for Other Projects */}
+                  <div className="h-48 relative overflow-hidden bg-muted">
+                    <ProjectPreview url={project.liveDemo} title={project.title} image={project.image} />
+                    <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-black rounded-full hover:bg-primary hover:text-white transition-all">
+                        <Github className="h-4 w-4" />
+                      </a>
+                      <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-black rounded-full hover:bg-primary hover:text-white transition-all">
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1">
-                  {project.technologies?.slice(0, 3).map((tech: string) => (
-                    <span
-                      key={tech}
-                      className="text-xs text-muted-foreground font-mono"
-                    >
-                      {tech}
-                      {project.technologies.indexOf(tech) < 2 && " •"}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div> */}
+
+                  <div className="p-5">
+                    <h4 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies?.slice(0, 3).map((tech: string) => (
+                        <Badge key={tech} variant="secondary" className="text-[10px] py-0 px-2 font-mono opacity-70">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

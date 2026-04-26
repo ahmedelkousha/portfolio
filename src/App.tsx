@@ -18,9 +18,22 @@ import PersonalInfoManager from "./pages/admin/PersonalInfoManager";
 import MessagesManager from "./pages/admin/MessagesManager";
 import { HelmetProvider } from "react-helmet-async";
 
+import { useEffect } from "react";
+import { client } from "./lib/appwrite";
+
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    // Ping Appwrite to verify setup
+    client.ping().then(() => {
+      console.log("Appwrite connection verified successfully!");
+    }).catch((err) => {
+      console.warn("Appwrite ping failed, but this might be expected if ping is not allowed:", err);
+    });
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <AuthProvider>
@@ -49,6 +62,7 @@ const App = () => (
       </AuthProvider>
     </HelmetProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

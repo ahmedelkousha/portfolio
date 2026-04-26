@@ -1,77 +1,74 @@
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Globe, Image as ImageIcon } from "lucide-react";
 
 interface ProjectPreviewProps {
   url: string;
   title: string;
+  image?: string;
 }
 
-export const ProjectPreview = ({ url, title }: ProjectPreviewProps) => {
+export const ProjectPreview = ({ url, title, image }: ProjectPreviewProps) => {
   const [isReady, setIsReady] = useState(false);
   const [hasError, setHasError] = useState(false);
   const isValidUrl = url && url !== "#";
+  
+  // Determine initial image source
+  // If image is provided, use it. Otherwise, if url is valid, try microlink screenshot.
+  const [imgSrc, setImgSrc] = useState<string>(
+    image || (isValidUrl ? `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url` : "")
+  );
 
   useEffect(() => {
-    if (!isValidUrl) {
+    // Update imgSrc if image or url changes
+    if (image) {
+      setImgSrc(image);
+    } else if (isValidUrl) {
+      setImgSrc(`https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url`);
+    } else {
       setHasError(true);
-      return;
     }
+  }, [image, url, isValidUrl]);
 
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [url, isValidUrl]);
-
-  if (hasError || !isValidUrl) {
+  if (hasError || (!image && !isValidUrl)) {
     return (
-      <>
-        <div className="absolute inset-0 bg-gradient-cyan-blue opacity-20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-4xl font-bold gradient-text opacity-50">
-            {title
-              .split(" ")
-              .map((w) => w[0])
-              .join("")}
-          </span>
+      <div className="absolute inset-0 bg-muted flex items-center justify-center p-6 text-center">
+        <div className="space-y-2 opacity-50">
+          <ImageIcon className="h-10 w-10 mx-auto text-muted-foreground" />
+          <p className="text-xs font-mono uppercase tracking-widest">{title}</p>
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      {/* Loading state */}
+    <div className="absolute inset-0 w-full h-full bg-muted overflow-hidden">
+      {/* Loading indicator (Skeleton) */}
       {!isReady && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Skeleton className="w-full h-full" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-              <span className="text-xs text-muted-foreground">Loading preview...</span>
-            </div>
-          </div>
-        </div>
+        <Skeleton className="absolute inset-0 w-full h-full" />
       )}
 
-      {/* Live iframe preview */}
-      <iframe
-        src={url}
-        title={`${title} website preview`}
-        className={`absolute inset-0 w-full h-full border-0 transition-opacity duration-700 pointer-events-none ${
-          isReady ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          transform: "scale(0.5)",
-          transformOrigin: "top left",
-          width: "200%",
-          height: "200%",
+      {/* Main Image (Custom or Auto-Screenshot) */}
+      <img
+        src={imgSrc}
+        alt={`${title} preview`}
+        onLoad={() => setIsReady(true)}
+        onError={() => {
+          // Fallback logic if the primary image fails
+          if (imgSrc === image && isValidUrl) {
+            // If the custom image failed, try microlink
+            setImgSrc(`https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url`);
+          } else {
+            setHasError(true);
+          }
         }}
-        sandbox="allow-scripts allow-same-origin"
-        loading="lazy"
-        onError={() => setHasError(true)}
+        className={`w-full h-full object-cover transition-all duration-700 ${
+          isReady ? "opacity-100 scale-100" : "opacity-0 scale-105"
+        } group-hover:scale-105`}
       />
-    </>
+      
+      {/* Subtle overlay for better text readability if needed */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+    </div>
   );
 };

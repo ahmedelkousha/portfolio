@@ -28,7 +28,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
     {/* Project Image */}
     <div className="relative h-64 overflow-hidden bg-muted">
       {/* Website Preview */}
-      <ProjectPreview url={project.liveDemo} title={project.title} />
+      <ProjectPreview url={project.liveDemo} title={project.title} image={project.image} />
 
       {/* Overlay on Hover */}
       <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">

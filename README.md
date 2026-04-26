@@ -1,73 +1,71 @@
-# Welcome to your Lovable project
+# 🚀 Ahmed Maher | Full-Stack Developer & SEO Specialist
 
-## Project info
+A high-end, 100% dynamic portfolio built for visual excellence and technical performance. This project features a custom-built **Content Management System (CMS)**, real-time client communication, and professional SEO optimization.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+![Portfolio Preview](https://ahmedmaher-web.vercel.app/)
 
-## How can I edit this code?
+## ✨ Key Features
 
-There are several ways of editing your application.
+### 🏗️ 100% Dynamic Content (CMS)
+- **Firebase Firestore Integration**: Every section (Projects, Skills, Experience, Education, Personal Info) is managed via a secure admin dashboard.
+- **Instant Updates**: Changes in the dashboard reflect on the frontend immediately without rebuilding or redeploying.
 
-**Use Lovable**
+### 🛡️ Professional Admin Dashboard
+- **Secure Authentication**: Protected routes powered by Firebase Auth.
+- **Message Center**: A full-featured inbox with **Active**, **Read**, and **Archived** tabs for client inquiries.
+- **Stats Manager**: Dynamic management of portfolio metrics (e.g., "100% Satisfaction", "50+ Projects").
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### 🎨 Premium UI/UX
+- **Interactive Animations**: Powered by **Framer Motion** for smooth, physics-based transitions.
+- **Smart Website Previews**: Integrated with **Microlink API** to automatically generate high-quality screenshots from live demo links.
+- **Glassmorphism Design**: Modern, premium aesthetic using Tailwind CSS and high-end color palettes.
 
-Changes made via Lovable will be committed automatically to this repo.
+### 📈 Technical SEO & Performance
+- **Dynamic Meta Tags**: Real-time titles, descriptions, and keywords managed through Firestore and `react-helmet-async`.
+- **Structured Data**: JSON-LD Schema.org implementation for rich search results.
+- **Sitemap & Robots**: Automatically configured `sitemap.xml` and `robots.txt` pointing to `ahmedmaher-web.vercel.app`.
+- **PWA Ready**: Web manifest configured for mobile home screen installation.
 
-**Use your preferred IDE**
+## 🛠️ Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS, Framer Motion, Lucide React
+- **Backend**: Firebase (Auth, Firestore, Analytics)
+- **Deployment**: Vercel
+- **Optimization**: React Helmet Async, Microlink API
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
-
+### 1. Clone & Install
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/ahmedelkousha/portfolio.git
+cd portfolio
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 2. Environment Variables
+Create a `.env` file in the root directory. This project uses the **`PPV_`** prefix for security:
 
-# Step 3: Install the necessary dependencies.
-npm i
+```env
+PPV_FIREBASE_API_KEY=your_key
+PPV_FIREBASE_AUTH_DOMAIN=your_domain
+PPV_FIREBASE_PROJECT_ID=your_id
+PPV_FIREBASE_STORAGE_BUCKET=your_bucket
+PPV_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+PPV_FIREBASE_APP_ID=your_app_id
+PPV_FIREBASE_MEASUREMENT_ID=your_measurement_id
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 3. Run Locally
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 📦 Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+This project is optimized for **Vercel**.
+- The `vercel.json` is pre-configured with SPA rewrites to ensure seamless routing.
+- Environment variables must be added in the Vercel Dashboard with the `PPV_` prefix.
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 📄 License
+MIT © Ahmed Maher

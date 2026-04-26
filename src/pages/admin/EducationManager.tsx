@@ -67,16 +67,16 @@ const EducationManager = () => {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 md:space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-foreground">Education</h1>
-          <p className="text-muted-foreground mt-1">Manage your academic background</p>
+          <h1 className="text-2xl md:text-3xl font-black text-foreground">Education</h1>
+          <p className="text-muted-foreground mt-1 text-sm md:text-base">Manage your academic background</p>
         </div>
         {!isAdding && !editingId && (
           <button
             onClick={() => { setIsAdding(true); setFormData({}); }}
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+            className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 w-full sm:w-auto"
           >
             <Plus size={20} />
             Add Education
@@ -90,11 +90,11 @@ const EducationManager = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="glass-card p-8 rounded-3xl space-y-6 border-2 border-primary/20"
+            className="glass-card p-5 md:p-8 rounded-[2rem] md:rounded-3xl space-y-6 border-2 border-primary/20"
           >
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold">{editingId ? "Edit Education" : "New Education"}</h2>
-              <button onClick={() => { setEditingId(null); setIsAdding(false); }} className="text-muted-foreground hover:text-foreground">
+              <button onClick={() => { setEditingId(null); setIsAdding(false); }} className="text-muted-foreground hover:text-foreground p-1">
                 <X size={24} />
               </button>
             </div>
@@ -108,7 +108,7 @@ const EducationManager = () => {
                     value={formData.degree || ""}
                     onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
                     required
-                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
                   />
                 </div>
                 <div className="space-y-2">
@@ -118,13 +118,13 @@ const EducationManager = () => {
                     value={formData.institution || ""}
                     onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
                     required
-                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
                   />
                 </div>
               </div>
 
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Location</label>
                     <input
@@ -132,17 +132,18 @@ const EducationManager = () => {
                       value={formData.location || ""}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                       required
-                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Period (e.g., 2014 - 2019)</label>
+                    <label className="text-sm font-medium">Period</label>
                     <input
                       type="text"
                       value={formData.period || ""}
                       onChange={(e) => setFormData({ ...formData, period: e.target.value })}
                       required
-                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
+                      placeholder="e.g. 2014 - 2019"
                     />
                   </div>
                 </div>
@@ -152,13 +153,20 @@ const EducationManager = () => {
                     value={formData.description || ""}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
-                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
                   />
                 </div>
               </div>
 
-              <div className="md:col-span-2 flex justify-end pt-4">
-                <button type="submit" className="px-8 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
+              <div className="md:col-span-2 flex flex-col sm:flex-row justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => { setEditingId(null); setIsAdding(false); }}
+                  className="px-8 py-3 rounded-xl border border-border hover:bg-muted transition-all font-bold order-2 sm:order-1"
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="px-8 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20 order-1 sm:order-2">
                   <Save size={20} />
                   Save Education
                 </button>
@@ -170,20 +178,20 @@ const EducationManager = () => {
 
       <div className="grid grid-cols-1 gap-4">
         {education.map((edu) => (
-          <div key={edu.id} className="glass-card p-6 rounded-3xl group relative border border-border/50">
-            <div className="flex justify-between items-start">
+          <div key={edu.id} className="glass-card p-5 md:p-6 rounded-[2rem] md:rounded-3xl group relative border border-border/50">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
               <div className="flex gap-4">
-                <div className="p-3 bg-primary/10 rounded-2xl text-primary">
+                <div className="p-3 bg-primary/10 rounded-2xl text-primary shrink-0 h-fit">
                   <GraduationCap size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">{edu.degree}</h3>
-                  <p className="text-primary font-medium">{edu.institution}</p>
-                  <p className="text-sm text-muted-foreground">{edu.period} | {edu.location}</p>
-                  {edu.description && <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{edu.description}</p>}
+                  <h3 className="text-lg md:text-xl font-bold leading-tight">{edu.degree}</h3>
+                  <p className="text-primary font-medium text-sm md:text-base">{edu.institution}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">{edu.period} | {edu.location}</p>
+                  {edu.description && <p className="mt-3 text-xs md:text-sm text-muted-foreground leading-relaxed">{edu.description}</p>}
                 </div>
               </div>
-              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
                 <button onClick={() => { setEditingId(edu.id); setFormData(edu); setIsAdding(false); }} className="p-2 hover:bg-primary/10 rounded-lg text-primary">
                   <Edit2 size={18} />
                 </button>

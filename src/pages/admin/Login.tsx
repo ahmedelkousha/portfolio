@@ -35,14 +35,14 @@ const Login = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-8 rounded-3xl w-full max-w-md shadow-2xl"
+        className="glass-card p-6 md:p-8 rounded-[2rem] md:rounded-3xl w-full max-w-md shadow-2xl mx-4"
       >
         <div className="text-center mb-8">
-          <div className="h-16 w-16 bg-gradient-cyan-blue rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
-            <Lock className="text-primary-foreground h-8 w-8" />
+          <div className="h-14 w-14 md:h-16 md:w-16 bg-gradient-cyan-blue rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
+            <Lock className="text-primary-foreground h-7 w-7 md:h-8 md:w-8" />
           </div>
-          <h1 className="text-3xl font-black gradient-text">Admin Portal</h1>
-          <p className="text-muted-foreground mt-2">Sign in to manage your portfolio</p>
+          <h1 className="text-2xl md:text-3xl font-black gradient-text">Admin Portal</h1>
+          <p className="text-muted-foreground mt-2 text-sm md:text-base">Sign in to manage your portfolio</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">

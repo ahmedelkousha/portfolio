@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
 
 // Firebase configuration using environment variables with PPV_ prefix
 const firebaseConfig = {
@@ -20,6 +21,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize and export services
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 // Analytics is only supported in browser environments
 export const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;

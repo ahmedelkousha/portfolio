@@ -3,6 +3,7 @@ import { portfolioService } from "@/services/portfolioService";
 import { Plus, Edit2, Trash2, Globe, Github, Save, X, Loader2, Star, Image as ImageIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 
 interface Project {
   id: string;
@@ -15,29 +16,19 @@ interface Project {
   featured: boolean;
 }
 
-const ProjectPreviewImage = ({ src, liveDemo, title, className }: { src?: string; liveDemo?: string; title: string; className: string }) => {
+const ProjectPreviewImage = ({ src, title, className }: { src?: string; title: string; className: string }) => {
   const [isReady, setIsReady] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const isValidUrl = liveDemo && liveDemo !== "#";
-  
-  const [imgSrc, setImgSrc] = useState<string>(
-    src || (isValidUrl ? `https://api.microlink.io?url=${encodeURIComponent(liveDemo!)}&screenshot=true&embed=screenshot.url` : "")
-  );
 
   useEffect(() => {
-    if (src) {
-      setImgSrc(src);
-    } else if (isValidUrl) {
-      setImgSrc(`https://api.microlink.io?url=${encodeURIComponent(liveDemo!)}&screenshot=true&embed=screenshot.url`);
-    } else {
-      setHasError(true);
-    }
-  }, [src, liveDemo, isValidUrl]);
+    setHasError(!src);
+    setIsReady(false);
+  }, [src]);
 
-  if (hasError || (!src && !isValidUrl)) {
+  if (hasError || !src) {
     return (
       <div className={`${className} bg-muted flex items-center justify-center p-4`}>
-        <div className="text-center opacity-30">
+        <div className="text-center opacity-20">
           <ImageIcon className="h-8 w-8 mx-auto mb-1" />
           <p className="text-[10px] font-mono uppercase">{title}</p>
         </div>
@@ -48,16 +39,10 @@ const ProjectPreviewImage = ({ src, liveDemo, title, className }: { src?: string
   return (
     <div className={`${className} bg-muted relative overflow-hidden`}>
       <img
-        src={imgSrc}
+        src={src}
         alt={title}
         onLoad={() => setIsReady(true)}
-        onError={() => {
-          if (imgSrc === src && isValidUrl) {
-            setImgSrc(`https://api.microlink.io?url=${encodeURIComponent(liveDemo!)}&screenshot=true&embed=screenshot.url`);
-          } else {
-            setHasError(true);
-          }
-        }}
+        onError={() => setHasError(true)}
         className={`w-full h-full object-cover transition-opacity duration-500 ${isReady ? "opacity-100" : "opacity-0"}`}
       />
       {!isReady && (
@@ -151,16 +136,16 @@ const ProjectsManager = () => {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 md:space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-foreground">Manage Projects</h1>
-          <p className="text-muted-foreground mt-1">Add, edit or remove projects from your portfolio</p>
+          <h1 className="text-2xl md:text-3xl font-black text-foreground">Manage Projects</h1>
+          <p className="text-muted-foreground mt-1 text-sm md:text-base">Add, edit or remove projects</p>
         </div>
         {!isAdding && !editingId && (
           <button
             onClick={() => { setIsAdding(true); setFormData({ featured: false, technologies: [] }); }}
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+            className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 w-full sm:w-auto"
           >
             <Plus size={20} />
             Add Project
@@ -174,44 +159,44 @@ const ProjectsManager = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="glass-card p-8 rounded-3xl space-y-6 relative border-2 border-primary/20"
+            className="glass-card p-5 md:p-8 rounded-[2rem] md:rounded-3xl space-y-6 relative border-2 border-primary/20"
           >
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold">{editingId ? "Edit Project" : "New Project"}</h2>
-              <button onClick={() => { setEditingId(null); setIsAdding(false); }} className="text-muted-foreground hover:text-foreground">
+              <button onClick={() => { setEditingId(null); setIsAdding(false); }} className="text-muted-foreground hover:text-foreground p-1">
                 <X size={24} />
               </button>
             </div>
 
-            <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {/* Left Column */}
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Title</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Title</label>
                   <input
                     type="text"
                     value={formData.title || ""}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     required
-                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
                     placeholder="Enter project name..."
                   />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Description</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Description</label>
                   <textarea
                     value={formData.description || ""}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     required
                     rows={4}
-                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                    className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm md:text-base"
                     placeholder="Tell the story of this project..."
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Technologies (Tags)</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Technologies</label>
                   <div className="space-y-3">
                     <div className="flex gap-2">
                       <input
@@ -219,20 +204,20 @@ const ProjectsManager = () => {
                         value={newTag}
                         onChange={(e) => setNewTag(e.target.value)}
                         onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
-                        className="flex-1 bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
-                        placeholder="Add tag (e.g. React, Node.js)"
+                        className="flex-1 bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
+                        placeholder="Add tag"
                       />
                       <button
                         type="button"
                         onClick={addTag}
-                        className="bg-muted border border-border rounded-xl px-4 hover:bg-primary hover:text-white transition-all"
+                        className="bg-muted border border-border rounded-xl px-4 hover:bg-primary hover:text-white transition-all text-sm font-bold"
                       >
                         Add
                       </button>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {formData.technologies?.map((tag) => (
-                        <span key={tag} className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-sm font-bold">
+                        <span key={tag} className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-xs font-bold">
                           {tag}
                           <button type="button" onClick={() => removeTag(tag)} className="hover:text-destructive">
                             <X size={14} />
@@ -246,44 +231,32 @@ const ProjectsManager = () => {
 
               {/* Right Column */}
               <div className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Project Visual</label>
-                  <div className="space-y-4">
-                    <input
-                      type="text"
-                      value={formData.image || ""}
-                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                      placeholder="Image URL (optional if Live Demo is set)"
-                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
-                    />
-                    
-                    <ProjectPreviewImage 
-                      src={formData.image} 
-                      liveDemo={formData.liveDemo} 
-                      title={formData.title || "Preview"} 
-                      className="aspect-video w-full rounded-2xl border-2 border-dashed border-border"
-                    />
-                  </div>
+                <div className="space-y-4">
+                  <ImageUpload 
+                    value={formData.image} 
+                    onChange={(url) => setFormData({ ...formData, image: url })}
+                    folder="projects"
+                  />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">GitHub</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">GitHub</label>
                     <input
                       type="text"
                       value={formData.github || ""}
                       onChange={(e) => setFormData({ ...formData, github: e.target.value })}
-                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                       placeholder="Repository URL"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Live Demo</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Live Demo</label>
                     <input
                       type="text"
                       value={formData.liveDemo || ""}
                       onChange={(e) => setFormData({ ...formData, liveDemo: e.target.value })}
-                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none"
+                      className="w-full bg-muted/50 border border-border/50 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 outline-none text-sm"
                       placeholder="Website URL"
                     />
                   </div>
@@ -298,26 +271,26 @@ const ProjectsManager = () => {
                     className="w-6 h-6 accent-primary rounded-lg"
                   />
                   <div>
-                    <label htmlFor="featured" className="font-bold cursor-pointer flex items-center gap-2">
+                    <label htmlFor="featured" className="font-bold cursor-pointer flex items-center gap-2 text-sm">
                       <Star size={16} className="text-primary fill-primary" />
                       Featured Project
                     </label>
-                    <p className="text-xs text-muted-foreground">This project will be highlighted at the top of your portfolio.</p>
+                    <p className="text-[10px] md:text-xs text-muted-foreground">Highlighted at the top of your portfolio.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="md:col-span-2 flex justify-end gap-3 pt-4 border-t border-border/50">
+              <div className="md:col-span-2 flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-border/50">
                 <button
                   type="button"
                   onClick={() => { setEditingId(null); setIsAdding(false); }}
-                  className="px-8 py-3 rounded-xl border border-border hover:bg-muted transition-all font-bold"
+                  className="px-8 py-3 rounded-xl border border-border hover:bg-muted transition-all font-bold order-2 sm:order-1"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-10 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-xl shadow-primary/20"
+                  className="px-10 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-xl shadow-primary/20 order-1 sm:order-2"
                 >
                   <Save size={20} />
                   {editingId ? "Apply Changes" : "Create Project"}
@@ -328,44 +301,43 @@ const ProjectsManager = () => {
         )}
       </AnimatePresence>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
         {projects.map((project) => (
           <motion.div
             key={project.id}
             layout
             className="glass-card overflow-hidden rounded-[2rem] flex flex-col group border border-border/50 hover:border-primary/30 transition-all"
           >
-            <div className="h-56 relative group">
-              <ProjectPreviewImage 
-                src={project.image} 
-                liveDemo={project.liveDemo} 
-                title={project.title} 
+            <div className="aspect-video w-full relative group">
+              <ProjectPreviewImage
+                src={project.image}
+                title={project.title}
                 className="w-full h-full"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                <button 
-                  onClick={() => handleEdit(project)} 
+                <button
+                  onClick={() => handleEdit(project)}
                   className="p-3 bg-white text-black rounded-2xl hover:bg-primary hover:text-white transition-all transform hover:scale-110"
                 >
                   <Edit2 size={20} />
                 </button>
-                <button 
-                  onClick={() => handleDelete(project.id)} 
+                <button
+                  onClick={() => handleDelete(project.id)}
                   className="p-3 bg-white text-black rounded-2xl hover:bg-destructive hover:text-white transition-all transform hover:scale-110"
                 >
                   <Trash2 size={20} />
                 </button>
               </div>
               {project.featured && (
-                <div className="absolute top-4 left-4 px-4 py-1.5 bg-primary text-primary-foreground text-xs font-black rounded-full shadow-lg flex items-center gap-1.5">
+                <div className="absolute top-4 left-4 px-4 py-1.5 bg-primary text-primary-foreground text-[10px] md:text-xs font-black rounded-full shadow-lg flex items-center gap-1.5">
                   <Star size={12} className="fill-current" />
                   FEATURED
                 </div>
               )}
             </div>
-            <div className="p-8 flex flex-col flex-1 gap-4">
+            <div className="p-6 md:p-8 flex flex-col flex-1 gap-4">
               <div className="space-y-1">
-                <h3 className="text-2xl font-black text-foreground">{project.title}</h3>
+                <h3 className="text-xl md:text-2xl font-black text-foreground">{project.title}</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies?.slice(0, 3).map(tag => (
                     <span key={tag} className="text-[10px] font-black uppercase tracking-widest text-primary/70">
@@ -379,17 +351,17 @@ const ProjectsManager = () => {
                   )}
                 </div>
               </div>
-              <p className="text-muted-foreground text-sm line-clamp-3 leading-relaxed">
+              <p className="text-muted-foreground text-xs md:text-sm line-clamp-3 leading-relaxed">
                 {project.description}
               </p>
               <div className="flex items-center gap-6 pt-4 border-t border-border/30 mt-auto">
                 <div className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-help group/tip relative">
                   <Github size={18} />
-                  <span className="text-xs font-bold uppercase tracking-tighter">Repo</span>
+                  <span className="text-[10px] font-bold uppercase tracking-tighter">Repo</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-help group/tip relative">
                   <Globe size={18} />
-                  <span className="text-xs font-bold uppercase tracking-tighter">Live</span>
+                  <span className="text-[10px] font-bold uppercase tracking-tighter">Live</span>
                 </div>
               </div>
             </div>

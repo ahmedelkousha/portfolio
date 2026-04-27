@@ -16,7 +16,6 @@ import ExperienceManager from "./pages/admin/ExperienceManager";
 import EducationManager from "./pages/admin/EducationManager";
 import PersonalInfoManager from "./pages/admin/PersonalInfoManager";
 import MessagesManager from "./pages/admin/MessagesManager";
-import { HelmetProvider } from "react-helmet-async";
 
 import { useEffect } from "react";
 import { client } from "./lib/appwrite";
@@ -35,7 +34,6 @@ const App = () => {
 
   return (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
       <AuthProvider>
         <TooltipProvider>
           <Toaster />
@@ -60,7 +58,6 @@ const App = () => {
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
-    </HelmetProvider>
   </QueryClientProvider>
   );
 };

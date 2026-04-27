@@ -10,7 +10,6 @@ import { Education } from "@/sections/Education";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
 import { SEOExpertise } from "@/sections/SEOExpertise";
-import { SEO } from "@/components/SEO";
 
 const Index = () => {
   useEffect(() => {
@@ -26,7 +25,6 @@ const Index = () => {
 
   return (
     <div className="min-h-[100svh] bg-background text-foreground">
-      <SEO />
       <Navbar />
       <main>
         <Hero />

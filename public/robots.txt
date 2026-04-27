@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://ahmedmaher-web.vercel.app/sitemap.xml

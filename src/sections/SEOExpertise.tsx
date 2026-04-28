@@ -38,12 +38,12 @@ export const SEOExpertise = () => {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale:0.1 }}
+                whileInView={{ opacity: 1, y: 0, scale:1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="glass-card p-6 rounded-2xl hover-card group"
+                className="glass-card p-6 rounded-2xl hover:hover-card group"
               >
                 {/* Icon */}
                 <div className="mb-4">

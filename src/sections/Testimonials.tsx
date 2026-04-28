@@ -26,7 +26,7 @@ const TestimonialCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group glass-card rounded-2xl overflow-hidden hover-card h-full flex flex-col p-6 relative"
+    className="group glass-card rounded-2xl overflow-hidden md:hover:hover-card h-full flex flex-col p-6 relative"
   >
     {/* Quote Icon */}
     <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">

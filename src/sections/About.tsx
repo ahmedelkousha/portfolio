@@ -72,7 +72,7 @@ export const About = () => {
               <div className="relative group max-w-sm mx-auto lg:mx-0">
                 {/* Animated Glow */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                
+
                 {/* Image Container */}
                 <div className="relative aspect-[4/5] sm:aspect-square overflow-hidden rounded-2xl border-2 border-primary/20 bg-muted shadow-2xl">
                   <img
@@ -80,7 +80,7 @@ export const About = () => {
                     alt={displayInfo.name}
                     className="object-cover object-top w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  
+
                   {/* Overlay Decoration */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                     <p className="text-sm font-medium text-primary-foreground drop-shadow-md">
@@ -164,11 +164,12 @@ export const About = () => {
             {highlights.map((item, index) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, scale: 0.1 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass-card p-6 rounded-xl text-center hover-card"
+                transition={{ duration: 0.3, delay:index * 0.1 }}
+
+                className="glass-card p-6 rounded-xl text-center hover:hover-card"
               >
                 <item.icon className="h-10 w-10 mx-auto mb-3 text-primary" />
                 <h4 className="font-semibold text-foreground text-lg mb-2">

@@ -72,9 +72,10 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground flex items-center justify-center gap-1">
-            © {currentYear} {personalInfo.name}. Made with
+            © {currentYear} {personalInfo.name}.
+            {/* Made with
             <Heart className="h-4 w-4 text-primary animate-pulse" />
-            using React & Tailwind CSS
+            using React & Tailwind CSS */}
           </p>
         </div>
       </div>

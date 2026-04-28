@@ -64,7 +64,7 @@
 
   .dark {
     /* Dark Mode - Sleek & Modern */
-    --background: 222 47% 6%;
+    --background: 222 47% 9%;
     --foreground: 210 40% 98%;
 
     --card: 222 47% 9%;
@@ -126,6 +126,13 @@
     overflow-x: hidden;
   }
 
+  /* Hide default cursor — replaced by CustomCursor component */
+  @media (pointer: fine) {
+    html, body, * {
+      cursor: none !important;
+    }
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
   }
@@ -150,6 +157,27 @@
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(var(--cyan)), hsl(var(--electric-blue)));
+  }
+
+  /* Animated gradient for hero name — cycles through the full color palette */
+  @keyframes gradient-cycle {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .gradient-text-animated {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--cyan)),
+      hsl(var(--electric-blue)),
+      hsl(187, 100%, 70%),
+      hsl(var(--cyan)),
+      hsl(217, 91%, 75%),
+      hsl(var(--electric-blue))
+    );
+    background-size: 300% 300%;
+    animation: gradient-cycle 4s ease infinite;
   }
 
   /* Glow Effects */

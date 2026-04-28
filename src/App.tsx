@@ -19,6 +19,7 @@ import MessagesManager from "./pages/admin/MessagesManager";
 
 import { useEffect } from "react";
 import { client } from "./lib/appwrite";
+import { CustomCursor } from "./components/CustomCursor";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +34,9 @@ const App = () => {
   }, []);
 
   return (
-  <QueryClientProvider client={queryClient}>
+  <>
+    <CustomCursor />
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <TooltipProvider>
           <Toaster />
@@ -59,6 +62,7 @@ const App = () => {
         </TooltipProvider>
       </AuthProvider>
   </QueryClientProvider>
+  </>
   );
 };
 

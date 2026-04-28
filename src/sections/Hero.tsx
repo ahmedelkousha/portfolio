@@ -18,10 +18,10 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
     <motion.div
       ref={ref}
       key={stat.label}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
-      className="glass-card p-4 rounded-xl hover-card"
+      initial={{ scale: 0.1 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.4, delay: 0.1 + index * 0.2 }}
+      className="glass-card p-4 rounded-xl hover:hover-card"
     >
       <div className="text-2xl md:text-3xl font-bold gradient-text">
         {count}{suffix}
@@ -96,10 +96,13 @@ export const Hero = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{
+              opacity: { duration: 0.6, delay: 0.1 },
+              y: { duration: 0.6, delay: 0.1 },
+            }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
           >
-            <span className="gradient-text">{displayInfo.name}</span>
+            <span className="gradient-text gradient-text-animated">{displayInfo.name}</span>
           </motion.h1>
 
           {/* Role with Typing Effect */}
@@ -139,8 +142,8 @@ export const Hero = () => {
               <Briefcase className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             </div> */}
 
-            {/* Role Tags */}
-            {/* <div className="flex flex-wrap justify-center gap-2">
+          {/* Role Tags */}
+          {/* <div className="flex flex-wrap justify-center gap-2">
               {openToRoles.map((role) => (
                 <span
                   key={role}
@@ -159,13 +162,25 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-10"
           >
-            <Button
-              onClick={scrollToProjects}
-              size="lg"
-              className="bg-gradient-cyan-blue hover:opacity-90 text-primary-foreground font-semibold px-8 glow-mixed"
+            <motion.div
+              animate={{ scale: [1, 1.06, 1, 1.06, 1, 1] }}
+              transition={{
+                duration: 2,
+                times: [0, 0.0625, 0.125, 0.1875, 0.25, 1],
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2,
+                repeatDelay: 3
+              }}
             >
-              View My Work
-            </Button>
+              <Button
+                onClick={scrollToProjects}
+                size="lg"
+                className="bg-gradient-cyan-blue hover:opacity-90 text-primary-foreground font-semibold px-8 glow-mixed w-full"
+              >
+                View My Work
+              </Button>
+            </motion.div>
             <Button
               variant="outline"
               size="lg"
@@ -212,7 +227,7 @@ export const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 1, delay: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8"
           >
             {stats.map((stat, index) => (

@@ -39,7 +39,7 @@ export const Experience = () => {
                   key={exp.id}
                   onClick={() => setActiveIndex(index)}
                   className={`relative text-left px-4 py-3 rounded-xl transition-all duration-300 whitespace-nowrap md:whitespace-normal ${activeIndex === index
-                      ? "glass-card text-foreground glow-mixed"
+                      ? "glass-card text-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     }`}
                 >
@@ -61,7 +61,7 @@ export const Experience = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 min-h-[440px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active.id}

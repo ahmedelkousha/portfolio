@@ -179,7 +179,7 @@ export const Contact = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 glass-card rounded-xl hover-card group"
+                  className="flex items-center gap-4 p-4 glass-card rounded-xl hover:hover-card group"
                 >
                   <div className="p-3 rounded-lg bg-gradient-cyan-blue">
                     <item.icon className="h-5 w-5 text-primary-foreground" />

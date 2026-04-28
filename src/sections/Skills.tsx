@@ -75,7 +75,7 @@ export const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                className="glass-card p-6 rounded-2xl hover-card"
+                className="glass-card p-6 rounded-2xl hover:hover-card"
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-6">
@@ -92,7 +92,7 @@ export const Skills = () => {
                   {skillsList.map((skill: any, skillIndex: number) => (
                     <motion.div
                       key={typeof skill === "string" ? skill : skill.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
+                      initial={{ opacity: 0, scale: 0.1 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{
@@ -100,7 +100,7 @@ export const Skills = () => {
                         delay: categoryIndex * 0.1 + skillIndex * 0.05,
                       }}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="p-3 bg-muted/50 rounded-xl text-center border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
+                      className="p-3 bg-muted/50 rounded-xl text-center border border-border/50 hover:border-primary/50 hover:bg-primary/5 cursor-default"
                     >
                       <span className="text-sm font-medium text-foreground">
                         {typeof skill === "string" ? skill : skill.name}

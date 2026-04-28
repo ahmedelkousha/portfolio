@@ -32,7 +32,7 @@ export const Education = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-8 rounded-2xl hover-card mb-6"
+              className="glass-card p-8 rounded-2xl hover:hover-card mb-6"
             >
               {/* Icon */}
               <div className="flex items-start gap-6">

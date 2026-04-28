@@ -19,11 +19,11 @@ import * as React from "react";
 
 const ProjectCard = ({ project, index }: { project: any; index: number }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, y:30}}
+    whileInView={{ opacity: 1, y:0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group glass-card rounded-2xl overflow-hidden hover-card flex flex-col"
+    transition={{ duration: 0.6, delay: index * 0.04 }}
+    className="group glass-card rounded-2xl overflow-hidden flex flex-col"
   >
     {/* Project Image */}
     <div className="relative aspect-video w-full overflow-hidden bg-muted">
@@ -105,6 +105,14 @@ export const Projects = () => {
     });
   }, [api]);
 
+  // Re-read count when DB data loads (async) so dots update correctly
+  React.useEffect(() => {
+    if (!api) return;
+    api.reInit();
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+  }, [api, allProjects]);
+
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="section-container">
@@ -185,18 +193,24 @@ export const Projects = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="glass-card rounded-2xl overflow-hidden hover-card group border border-border/50"
+                  className="glass-card rounded-2xl overflow-hidden group border border-border/50"
                 >
                   {/* Small Preview for Other Projects */}
                   <div className="aspect-video w-full relative overflow-hidden bg-muted">
                     <ProjectPreview url={project.liveDemo} title={project.title} image={project.image} />
-                    <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-black rounded-full hover:bg-primary hover:text-white transition-all">
-                        <Github className="h-4 w-4" />
-                      </a>
-                      <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-black rounded-full hover:bg-primary hover:text-white transition-all">
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
+                    <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                      <Button size="sm" variant="outline" className="border-primary" asChild>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
+                      </Button>
+                      <Button size="sm" className="bg-gradient-cyan-blue" asChild>
+                        <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Demo
+                        </a>
+                      </Button>
                     </div>
                   </div>
 

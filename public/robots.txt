@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ahmedmaher-web.vercel.app/sitemap.xml
+Sitemap: https://ahmedmaher-web.vercel.app/sitemap_index.xml

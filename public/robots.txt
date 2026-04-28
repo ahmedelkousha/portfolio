@@ -1,4 +1,7 @@
+User-agent: Googlebot
+Allow: /
+
 User-agent: *
 Allow: /
 
-Sitemap: https://ahmedmaher-web.vercel.app/sitemap_index.xml
+Sitemap: https://ahmedmaher-web.vercel.app/sitemap.xml

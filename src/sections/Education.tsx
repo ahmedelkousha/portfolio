@@ -3,10 +3,25 @@ import { GraduationCap, Calendar, MapPin, Loader2 } from "lucide-react";
 import { education as staticEducation } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
 import { usePortfolioData } from "@/hooks/usePortfolioData";
+import { localizeField } from "@/services/portfolioService";
+import { useTranslation } from "react-i18next";
+import { toArabicNumerals } from "@/lib/numerals";
 
 export const Education = () => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === "ar" ? "ar" : "en";
   const { data: dbEducation, loading } = usePortfolioData("education");
-  const displayEducation = dbEducation.length > 0 ? dbEducation : staticEducation;
+
+  const rawList = dbEducation.length > 0 ? dbEducation : staticEducation;
+
+  const displayEducation = rawList.map((edu: any) => ({
+    ...edu,
+    degree: toArabicNumerals(localizeField(edu, "degree", lang), lang),
+    institution: toArabicNumerals(localizeField(edu, "institution", lang), lang),
+    period: toArabicNumerals(edu.period, lang),
+    description: toArabicNumerals(localizeField(edu, "description", lang), lang),
+    location: toArabicNumerals(edu.location, lang),
+  }));
 
   if (loading && dbEducation.length === 0) {
     return (
@@ -20,12 +35,12 @@ export const Education = () => {
     <section className="py-20 bg-muted/30">
       <div className="section-container">
         <SectionHeading
-          title="Education"
-          subtitle="My academic background and qualifications"
+          title={t("education.title")}
+          subtitle={t("education.subtitle")}
         />
 
         <div className="max-w-2xl mx-auto">
-          {displayEducation.map((edu, index) => (
+          {displayEducation.map((edu: any, index: number) => (
             <motion.div
               key={edu.id}
               initial={{ opacity: 0, y: 30 }}
@@ -34,7 +49,6 @@ export const Education = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="glass-card p-8 rounded-2xl hover:hover-card mb-6"
             >
-              {/* Icon */}
               <div className="flex items-start gap-6">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -47,19 +61,14 @@ export const Education = () => {
                 </motion.div>
 
                 <div className="flex-1">
-                  {/* Degree */}
                   <h3 className="sm:text-xl text-lg font-bold text-foreground mb-2">
                     {edu.degree}
                   </h3>
-
-                  {/* Institution */}
                   <p className="sm:text-lg text-base text-primary font-semibold mb-3">
                     {edu.institution}
                   </p>
-
-                  {/* Meta Info */}
                   <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1" dir="ltr">
                       <Calendar className="h-4 w-4" />
                       {edu.period}
                     </span>
@@ -68,8 +77,6 @@ export const Education = () => {
                       {edu.location}
                     </span>
                   </div>
-
-                  {/* Description */}
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {edu.description}
                   </p>

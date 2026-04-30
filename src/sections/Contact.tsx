@@ -8,9 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { portfolioService } from "@/services/portfolioService";
+import { portfolioService, localizeField } from "@/services/portfolioService";
+import { useTranslation } from "react-i18next";
+import { toArabicNumerals } from "@/lib/numerals";
 
 export const Contact = () => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === "ar" ? "ar" : "en";
   const { toast } = useToast();
   const [info, setInfo] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -28,7 +32,7 @@ export const Contact = () => {
         const data = await portfolioService.getPersonalInfo();
         if (data) setInfo(data);
       } catch (error) {
-        console.error("Error fetching contact info:", error);
+        console.error(t("admin.common.errors.fetchContact"), error);
       } finally {
         setLoading(false);
       }
@@ -36,7 +40,7 @@ export const Contact = () => {
     fetchInfo();
   }, []);
 
-  const displayInfo = info || personalInfo;
+  const displayInfo = { ...personalInfo, ...info };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -55,8 +59,8 @@ export const Contact = () => {
 
     if (!name || !email || !subject || !message) {
       toast({
-        title: "Missing Fields",
-        description: "Please fill in all fields before submitting.",
+        title: t("contact.errorTitle"),
+        description: t("contact.errorDesc"),
         variant: "destructive",
       });
       return;
@@ -66,8 +70,8 @@ export const Contact = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
+        title: t("contact.errorTitle"),
+        description: t("contact.errorDesc"),
         variant: "destructive",
       });
       return;
@@ -85,17 +89,17 @@ export const Contact = () => {
       });
 
       toast({
-        title: "Message Sent!",
-        description: "Your message has been received. I'll get back to you soon!",
+        title: t("contact.successTitle"),
+        description: t("contact.successDesc"),
       });
 
       // Clear form
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error: any) {
-      console.error("Submission error:", error);
+      console.error(t("admin.common.errors.submitForm"), error);
       toast({
-        title: "Submission Failed",
-        description: error.message || "Something went wrong. Please try again later.",
+        title: t("contact.errorTitle"),
+        description: error.message || t("contact.errorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -106,20 +110,20 @@ export const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
+      label: localizeField(displayInfo, "contact_email_label", lang) || t("footer.email"),
       value: displayInfo.email,
       href: `mailto:${displayInfo.email}`,
     },
     {
       icon: Phone,
-      label: "Phone",
-      value: displayInfo.phone,
-      href: `tel:${displayInfo.phone}`,
+      label: localizeField(displayInfo, "contact_phone_label", lang) || t("footer.phone"),
+      value: toArabicNumerals(displayInfo.phone, lang),
+      href: `tel:${(displayInfo.phone || "").replace(/\s/g, "")}`,
     },
     {
       icon: MapPin,
-      label: "Location",
-      value: displayInfo.location,
+      label: localizeField(displayInfo, "contact_location_label", lang) || t("about.title"),
+      value: localizeField(displayInfo, "location", lang),
       href: "#",
     },
   ];
@@ -129,7 +133,7 @@ export const Contact = () => {
     { icon: Linkedin, href: displayInfo.linkedin, label: "LinkedIn" },
     {
       icon: MessageCircle,
-      href: `https://wa.me/${(displayInfo.phone || "").replace(/\+/g, "")}`,
+      href: `https://wa.me/${(displayInfo.phone || "").replace(/\+/g, "").replace(/\s/g, "")}`,
       label: "WhatsApp",
     },
   ];
@@ -146,8 +150,8 @@ export const Contact = () => {
     <section id="contact" className="py-20">
       <div className="section-container">
         <SectionHeading
-          title="Get In Touch"
-          subtitle="Have a project in mind? Let's work together!"
+          title={toArabicNumerals(localizeField(displayInfo, "contact_title", lang) || t("contact.title"), lang)}
+          subtitle={toArabicNumerals(localizeField(displayInfo, "contact_subtitle", lang) || t("contact.subtitle"), lang)}
         />
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -159,12 +163,10 @@ export const Contact = () => {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold text-foreground mb-6">
-              Let's <span className="gradient-text">Connect</span>
+              {toArabicNumerals(localizeField(displayInfo, "contact_info_title", lang) || t("contact.infoTitle"), lang)}
             </h3>
-            <p className="text-muted-foreground mb-8">
-              I'm currently open to freelance projects and collaboration
-              opportunities. Whether you have a question or just want to say hi,
-              feel free to reach out!
+            <p className="text-muted-foreground mb-8 text-start whitespace-pre-wrap">
+              {toArabicNumerals(localizeField(displayInfo, "contact_info_desc", lang) || t("contact.infoDesc"), lang)}
             </p>
 
             {/* Contact Details */}
@@ -186,7 +188,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{item.label}</p>
-                    <p className="font-medium text-foreground group-hover:text-primary transition-colors">
+                    <p className="font-medium text-foreground group-hover:text-primary transition-colors" dir="ltr">
                       {item.value}
                     </p>
                   </div>
@@ -197,7 +199,7 @@ export const Contact = () => {
             {/* Social Links */}
             <div>
               <p className="text-sm text-muted-foreground mb-4">
-                Follow me on social media
+                {t("contact.followSocial")}
               </p>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
@@ -227,15 +229,15 @@ export const Contact = () => {
           >
             <form
               onSubmit={handleSubmit}
-              className="glass-card p-8 rounded-2xl space-y-6"
+              className="glass-card p-8 rounded-2xl space-y-6 text-start"
             >
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">{t("contact.name")}</Label>
                   <Input
                     id="name"
                     name="name"
-                    placeholder="Your name"
+                    placeholder={t("contact.namePlaceholder")}
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -243,12 +245,12 @@ export const Contact = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t("contact.email")}</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={t("contact.emailPlaceholder")}
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -258,11 +260,11 @@ export const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
+                <Label htmlFor="subject">{t("contact.subject")}</Label>
                 <Input
                   id="subject"
                   name="subject"
-                  placeholder="What's this about?"
+                  placeholder={t("contact.subjectPlaceholder")}
                   value={formData.subject}
                   onChange={handleChange}
                   required
@@ -271,11 +273,11 @@ export const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
+                <Label htmlFor="message">{t("contact.message")}</Label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="Tell me about your project..."
+                  placeholder={t("contact.messagePlaceholder")}
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -297,12 +299,12 @@ export const Contact = () => {
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       className="h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full"
                     />
-                    Sending...
+                    {t("contact.sending")}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
                     <Send className="h-4 w-4" />
-                    Send Message
+                    {t("contact.send")}
                   </span>
                 )}
               </Button>

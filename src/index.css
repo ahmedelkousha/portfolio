@@ -414,3 +414,50 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================
+   RTL (Arabic) Layout Overrides
+   ========================================== */
+[dir="rtl"] {
+  font-family: "Noto Sans Arabic", "Cairo", "Segoe UI", system-ui, sans-serif;
+  text-align: right;
+}
+
+[dir="rtl"] .section-container {
+  direction: rtl;
+}
+
+/* Flip flex row directions for RTL */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Flip left/right margins/padding utilities that are layout-specific */
+[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+[dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+[dir="rtl"] .mr-4 { margin-right: 0; margin-left: 1rem; }
+[dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1rem; }
+
+/* Flip gap icons inside flex items */
+[dir="rtl"] .items-start { text-align: right; }
+
+/* Ensure code/mono text stays LTR even in RTL mode */
+[dir="rtl"] .font-mono,
+[dir="rtl"] code,
+[dir="rtl"] pre {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: embed;
+}
+
+/* Gradient text works in both directions */
+[dir="rtl"] .gradient-text,
+[dir="rtl"] .gradient-text-animated {
+  display: inline-block;
+}
+
+/* Link underline animation — flip for RTL */
+[dir="rtl"] .link-underline::after {
+  right: 0;
+  left: auto;
+}

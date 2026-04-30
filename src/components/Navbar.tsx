@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { navLinks, personalInfo } from "@/data/portfolio";
-import { portfolioService } from "@/services/portfolioService";
+import { portfolioService, localizeField } from "@/services/portfolioService";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
+import { useTheme } from "@/hooks/useTheme";
 
 export const Navbar = () => {
+  const { theme } = useTheme();
   const [info, setInfo] = useState<any>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const { lang } = useParams<{ lang: string }>();
+  const currentLang = lang || i18n.language || "en";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +38,9 @@ export const Navbar = () => {
   }, []);
 
   const displayInfo = info || personalInfo;
+  const displayName = info
+    ? localizeField(info, "name", currentLang) || info.name || personalInfo.name
+    : personalInfo.name;
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -39,14 +50,29 @@ export const Navbar = () => {
     }
   };
 
+  const switchLanguage = () => {
+    const newLang = currentLang === "en" ? "ar" : "en";
+    navigate(`/${newLang}`);
+  };
+
+  const navKeys: Record<string, string> = {
+    "#home": t("nav.home"),
+    "#about": t("nav.about"),
+    "#skills": t("nav.skills"),
+    "#experience": t("nav.experience"),
+    "#projects": t("nav.projects"),
+    "#testimonials": t("nav.testimonials"),
+    "#contact": t("nav.contact"),
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "glass-card py-3 shadow-lg border-0"
-          : "bg-transparent py-5"
+          ? "glass-card py-1 shadow-lg border-0"
+          : "bg-transparent py-3"
         }`}
     >
       <div className="section-container">
@@ -54,22 +80,25 @@ export const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="text-xl font-bold gradient-text"
+            className={`flex items-center gap-2`}
             whileHover={{ scale: 1.05 }}
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("#home");
             }}
           >
-            {displayInfo.name.split(" ")[0]}
-            <span className="text-foreground">.</span>
+            <img 
+              src={theme === "dark" ? "/logo-white.png" : "/logo-black.png"} 
+              alt="Logo" 
+              className={`h-16 w-auto ${isScrolled && currentLang === "en" ? "rotate-[-90deg] transition-all duration-300" : "rotate-0 transition-all"} ${isScrolled && currentLang === "ar" ? "rotate-[90deg] transition-all duration-300" : "rotate-0 transition-all"}`}
+            />
           </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <motion.a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors link-underline"
                 whileHover={{ y: -2 }}
@@ -78,14 +107,35 @@ export const Navbar = () => {
                   handleNavClick(link.href);
                 }}
               >
-                {link.name}
+                {navKeys[link.href] || link.name}
               </motion.a>
             ))}
+
+            {/* Language Switcher */}
+            <motion.button
+              onClick={switchLanguage}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-1.5 text-sm font-bold text-muted-foreground hover:text-primary transition-colors px-3 py-1.5 rounded-lg border border-border/50 hover:border-primary/50"
+              title="Switch language"
+            >
+              <Globe className="h-4 w-4" />
+              {currentLang === "en" ? "العربية" : "English"}
+            </motion.button>
+
             <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-3">
+            {/* Language Switcher Mobile */}
+            <motion.button
+              onClick={switchLanguage}
+              whileTap={{ scale: 0.9 }}
+              className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors"
+            >
+              {currentLang === "en" ? "ع" : "EN"}
+            </motion.button>
             <ThemeToggle />
             <motion.button
               className="p-2 text-foreground"
@@ -114,7 +164,7 @@ export const Navbar = () => {
               <div className="flex flex-col gap-4">
                 {navLinks.map((link, index) => (
                   <motion.a
-                    key={link.name}
+                    key={link.href}
                     href={link.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -125,7 +175,7 @@ export const Navbar = () => {
                       handleNavClick(link.href);
                     }}
                   >
-                    {link.name}
+                    {navKeys[link.href] || link.name}
                   </motion.a>
                 ))}
               </div>

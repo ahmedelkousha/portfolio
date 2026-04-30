@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin, Briefcase, Eye, Loader2 } from "lucide-react";
+import { Github, Linkedin, Eye, Loader2 } from "lucide-react";
 import { personalInfo, stats, openToRoles } from "@/data/portfolio";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Button } from "@/components/ui/button";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { useCountUp } from "@/hooks/useCountUp";
-import { useState, useEffect } from "react";
-import { portfolioService } from "@/services/portfolioService";
+import { usePersonalInfo } from "@/hooks/usePortfolioData";
+import { localizeField } from "@/services/portfolioService";
+import { useTranslation } from "react-i18next";
+import { toArabicNumerals } from "@/lib/numerals";
 
-const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => {
-  // Extract number from stat value (e.g., "3+" -> 3)
+const StatCard = ({ stat, index, label, lang }: { stat: typeof stats[0]; index: number; label: string; lang: string }) => {
   const numericValue = parseInt(stat.value.replace(/\D/g, ""), 10) || 0;
   const suffix = stat.value.replace(/[0-9]/g, "");
   const { count, ref } = useCountUp(numericValue, 2000);
@@ -17,53 +18,47 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
   return (
     <motion.div
       ref={ref}
-      key={stat.label}
+      key={label}
       initial={{ scale: 0.1 }}
       animate={{ scale: 1 }}
       transition={{ duration: 0.4, delay: 0.1 + index * 0.2 }}
       className="glass-card p-4 rounded-xl hover:hover-card"
     >
-      <div className="text-2xl md:text-3xl font-bold gradient-text">
-        {count}{suffix}
+      <div className="text-2xl md:text-3xl font-bold gradient-text" dir="ltr">
+        {toArabicNumerals(count, lang)}{suffix}
       </div>
-      <div className="text-sm text-muted-foreground">{stat.label}</div>
+      <div className="text-sm text-muted-foreground">{label}</div>
     </motion.div>
   );
 };
 
 export const Hero = () => {
-  const [info, setInfo] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === "ar" ? "ar" : "en";
+  const { data: info, loading } = usePersonalInfo();
 
-  useEffect(() => {
-    const fetchInfo = async () => {
-      try {
-        const data = await portfolioService.getPersonalInfo();
-        if (data) setInfo(data);
-      } catch (error) {
-        console.error("Error fetching hero info:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchInfo();
-  }, []);
-
-  const roles = [
-    "Full-Stack MERN Developer",
-    "React.js Developer",
-    "Next.js Developer",
-    "Web Performance Expert",
-    "SEO Specialist",
-  ];
-
+  const dbRoles = info?.openToRoles || openToRoles;
+  const roles = dbRoles.map((r: any) => localizeField(r, "name", lang) || r.name || r);
+  
   const typedRole = useTypingEffect(roles, 100, 50, 2000);
 
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const displayInfo = info || personalInfo; // Fallback to static data
+  // Resolve bilingual fields — fallback to static data
+  const raw = info || personalInfo;
+  const displayName = localizeField(raw, "name", lang);
+  const displayTagline = localizeField(raw, "tagline", lang);
+  const displayGithub = raw.github;
+  const displayLinkedin = raw.linkedin;
+  const displayCvUrl = info?.cvUrl || personalInfo.cvUrl;
+
+  const dbStats = info?.stats || stats;
+  const displayStats = dbStats.map((s: any) => ({
+    ...s,
+    label: toArabicNumerals(localizeField(s, "label", lang) || s.label, lang)
+  }));
 
   if (loading && !info) {
     return (
@@ -76,7 +71,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100svh] flex items-center justify-center overflow-x-hidden"
     >
       <AnimatedBackground />
 
@@ -87,22 +82,19 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-primary font-mono text-sm md:text-base mb-4"
+            className={`text-primary font-mono text-sm md:text-base !text-center ${lang === "en" ? "mb-4" : ""}`}
           >
-            Hello, I'm
+            {t("hero.greeting")}
           </motion.p>
 
           {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              opacity: { duration: 0.6, delay: 0.1 },
-              y: { duration: 0.6, delay: 0.1 },
-            }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
+            transition={{ opacity: { duration: 0.6, delay: 0.1 }, y: { duration: 0.6, delay: 0.1 } }}
+            className={`text-4xl md:text-6xl lg:text-7xl font-bold ${lang === "en" ? "mb-4" : ""}`}
           >
-            <span className="gradient-text gradient-text-animated">{displayInfo.name}</span>
+            <span className="gradient-text gradient-text-animated py-3">{displayName}</span>
           </motion.h1>
 
           {/* Role with Typing Effect */}
@@ -123,37 +115,8 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8"
           >
-            {displayInfo.tagline}
+            {displayTagline}
           </motion.p>
-
-          {/* Open to Work Badge - Positioned after tagline */}
-          {/* <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex flex-col items-center gap-3 mb-8"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full border border-emerald-500/30 bg-emerald-500/5">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </span>
-              <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Available for Opportunities</span>
-              <Briefcase className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-            </div> */}
-
-          {/* Role Tags */}
-          {/* <div className="flex flex-wrap justify-center gap-2">
-              {openToRoles.map((role) => (
-                <span
-                  key={role}
-                  className="text-xs px-3 py-1.5 rounded-full bg-muted/50 text-muted-foreground border border-border/50 hover:border-primary/50 transition-colors"
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
-          </motion.div> */}
 
           {/* CTA Buttons */}
           <motion.div
@@ -170,7 +133,7 @@ export const Hero = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 2,
-                repeatDelay: 3
+                repeatDelay: 3,
               }}
             >
               <Button
@@ -178,7 +141,7 @@ export const Hero = () => {
                 size="lg"
                 className="bg-gradient-cyan-blue hover:opacity-90 text-primary-foreground font-semibold px-8 glow-mixed w-full"
               >
-                View My Work
+                {t("hero.viewWork")}
               </Button>
             </motion.div>
             <Button
@@ -187,9 +150,9 @@ export const Hero = () => {
               className="border-primary text-primary hover:bg-gradient-cyan-blue font-semibold px-8"
               asChild
             >
-              <a href={displayInfo.cvUrl} target="_blank">
+              <a href={displayCvUrl} target="_blank" rel="noopener noreferrer">
                 <Eye className="mr-2 h-4 w-4" />
-                View Resume
+                {t("hero.viewResume")}
               </a>
             </Button>
           </motion.div>
@@ -202,7 +165,7 @@ export const Hero = () => {
             className="flex justify-center gap-4 mb-16"
           >
             <motion.a
-              href={displayInfo.github}
+              href={displayGithub}
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 glass-card rounded-full hover:glow-cyan transition-all"
@@ -212,7 +175,7 @@ export const Hero = () => {
               <Github className="h-5 w-5 text-foreground" />
             </motion.a>
             <motion.a
-              href={displayInfo.linkedin}
+              href={displayLinkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 glass-card rounded-full hover:glow-blue transition-all"
@@ -223,35 +186,18 @@ export const Hero = () => {
             </motion.a>
           </motion.div>
 
-          {/* Stats with Counting Animation */}
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8"
           >
-            {stats.map((stat, index) => (
-              <StatCard key={stat.label} stat={stat} index={index} />
+            {displayStats.map((stat, index) => (
+              <StatCard key={stat.label} stat={stat} index={index} label={stat.label} lang={lang} />
             ))}
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-muted-foreground"
-          >
-            <span className="text-xs font-mono">Scroll Down</span>
-            <ArrowDown className="h-4 w-4" />
-          </motion.div>
-        </motion.div> */}
       </div>
     </section>
   );

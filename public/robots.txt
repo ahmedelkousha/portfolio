@@ -1,7 +1,11 @@
 User-agent: Googlebot
 Allow: /
+Disallow: */admin*
+Disallow: /admin
 
 User-agent: *
 Allow: /
+Disallow: */admin*
+Disallow: /admin
 
 Sitemap: https://ahmedmaher-web.vercel.app/sitemap.xml

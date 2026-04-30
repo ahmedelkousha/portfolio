@@ -9,27 +9,32 @@ import {
   ExternalLink,
   Database,
   Loader2,
-  FolderGit
+  FolderGit,
+  Heading
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { migrateDataToFirebase } from "@/services/migration";
 import { portfolioService } from "@/services/portfolioService";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
+  const { t } = useTranslation();
+  const { lang } = useParams<{ lang: string }>();
+  const currentLang = lang || "en";
   const [migrating, setMigrating] = useState(false);
   const [stats, setStats] = useState([
-    { label: "Total Projects", value: "-", icon: FolderGit, color: "bg-blue-500" },
-    { label: "Skill Categories", value: "-", icon: Code2, color: "bg-purple-500" },
-    { label: "Testimonials", value: "-", icon: MessageSquare, color: "bg-emerald-500" },
-    { label: "Experience Items", value: "-", icon: Users, color: "bg-amber-500" },
+    { label: t("admin.dashboard.totalProjects"), value: "-", icon: FolderGit, color: "bg-blue-500" },
+    { label: t("admin.dashboard.totalSkills"), value: "-", icon: Code2, color: "bg-purple-500" },
+    { label: t("admin.dashboard.testimonials"), value: "-", icon: Quote, color: "bg-emerald-500" },
+    { label: t("admin.dashboard.clientMessages"), value: "-", icon: MessageSquare, color: "bg-red-500" },
   ]);
   const [personalInfo, setPersonalInfo] = useState<any>(null);
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, [t]);
 
   const fetchDashboardData = async () => {
     try {
@@ -46,10 +51,10 @@ const Dashboard = () => {
       setPersonalInfo(info);
 
       setStats([
-        { label: "Total Projects", value: projects.length.toString(), icon: FolderGit, color: "bg-blue-500" },
-        { label: "Skill Categories", value: skillCount.toString(), icon: Code2, color: "bg-purple-500" },
-        { label: "Testimonials", value: testimonials.length.toString(), icon: Quote, color: "bg-emerald-500" },
-        { label: "Client Messages", value: messages.length.toString(), icon: MessageSquare, color: "bg-red-500" },
+        { label: t("admin.dashboard.totalProjects"), value: projects.length.toString(), icon: FolderGit, color: "bg-blue-500" },
+        { label: t("admin.dashboard.totalSkills"), value: skillCount.toString(), icon: Code2, color: "bg-purple-500" },
+        { label: t("admin.dashboard.testimonials"), value: testimonials.length.toString(), icon: Quote, color: "bg-emerald-500" },
+        { label: t("admin.dashboard.clientMessages"), value: messages.length.toString(), icon: MessageSquare, color: "bg-red-500" },
       ]);
     } catch (error) {
       console.error("Error fetching dashboard stats:", error);
@@ -57,31 +62,33 @@ const Dashboard = () => {
   };
 
   const handleMigration = async () => {
-    if (!window.confirm("This will overwrite your current Firestore data with local static data. Continue?")) return;
+    if (!window.confirm(t("admin.dashboard.migrationConfirm"))) return;
     setMigrating(true);
     try {
       const success = await migrateDataToFirebase();
       if (success) {
-        toast.success("Data migrated successfully!");
+        toast.success(t("admin.dashboard.migrationSuccess"));
         fetchDashboardData(); // Refresh stats
       } else {
-        toast.error("Migration failed.");
+        toast.error(t("admin.dashboard.migrationFailed"));
       }
     } catch (error: any) {
-      toast.error(`Migration failed: ${error.message || "Unknown error"}`);
+      toast.error(`${t("admin.dashboard.migrationFailed")}: ${error.message || ""}`);
       console.error("Migration error:", error);
     } finally {
       setMigrating(false);
     }
   };
 
+  const base = `/${currentLang}/admin`;
+
   return (
     <div className="space-y-6 md:space-y-10">
       <header>
         <h1 className="text-2xl md:text-4xl font-black text-foreground">
-          Welcome back, {personalInfo?.name?.split(" ")[0] || "Admin"}
+          {t("admin.dashboard.welcome")}, {personalInfo?.[`name_${currentLang}`] || personalInfo?.name?.split(" ")[0] || "Admin"}
         </h1>
-        <p className="text-muted-foreground mt-1 md:mt-2 text-sm md:text-base">Here's an overview of your portfolio content</p>
+        <p className="text-muted-foreground mt-1 md:mt-2 text-sm md:text-base">{t("admin.dashboard.subtitle")}</p>
       </header>
 
       {/* Stats Grid */}
@@ -89,10 +96,14 @@ const Dashboard = () => {
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="glass-card p-4 md:p-6 rounded-[2rem] md:rounded-3xl group hover:border-primary/30 transition-all"
+            initial={{ opacity: 0, scale: 0.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: index * 0.07, 
+              duration: 0.2,
+              ease: "easeOut"
+            }}
+            className="glass-card p-4 md:p-6 rounded-[2rem] md:rounded-3xl group hover:border-primary/30"
           >
             <div className="flex items-start justify-between">
               <div className={`p-2.5 md:p-3 rounded-xl md:rounded-2xl ${stat.color} bg-opacity-10`}>
@@ -111,14 +122,15 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         <section className="glass-card p-6 md:p-8 rounded-[2rem] md:rounded-3xl space-y-6">
           <h2 className="text-xl md:text-2xl font-bold flex items-center gap-3">
-            Quick Actions
+            {t("admin.dashboard.quickActions")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
             {[
-              { name: "Add New Project", path: "/admin/projects", icon: FolderGit },
-              { name: "View Messages", path: "/admin/messages", icon: MessageSquare },
-              { name: "Update Profile", path: "/admin/personal", icon: Users },
-              { name: "View Live Site", path: "/", icon: ExternalLink, external: true },
+              { name: t("admin.dashboard.addProject"), path: `${base}/projects`, icon: FolderGit },
+              { name: t("admin.dashboard.viewMessages"), path: `${base}/messages`, icon: MessageSquare },
+              { name: t("admin.dashboard.updateProfile"), path: `${base}/personal`, icon: Users },
+              { name: t("admin.nav.hero"), path: `${base}/hero`, icon: Heading },
+              { name: t("admin.dashboard.viewLive"), path: `/${currentLang}`, icon: ExternalLink, external: true },
             ].map((action) => (
               action.external ? (
                 <a
@@ -156,9 +168,9 @@ const Dashboard = () => {
             <Database className="text-primary h-7 w-7 md:h-8 md:w-8" />
           </div>
           <div>
-            <h3 className="text-lg md:text-xl font-bold">Initialize Database</h3>
+            <h3 className="text-lg md:text-xl font-bold">{t("admin.dashboard.initDb")}</h3>
             <p className="text-muted-foreground text-xs md:text-sm max-w-xs mt-1 mb-4">
-              Push your local `portfolio.ts` data to Firebase Firestore to get started.
+              {t("admin.dashboard.initDbDesc")}
             </p>
             <button
               onClick={handleMigration}
@@ -166,7 +178,7 @@ const Dashboard = () => {
               className="px-6 py-2.5 bg-muted hover:bg-primary hover:text-primary-foreground rounded-xl transition-all font-bold text-sm flex items-center gap-2 mx-auto disabled:opacity-50"
             >
               {migrating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Database size={16} />}
-              {migrating ? "Migrating..." : "Migrate Local Data"}
+              {migrating ? t("admin.dashboard.migrating") : t("admin.dashboard.migrate")}
             </button>
           </div>
         </section>

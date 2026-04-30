@@ -1,0 +1,405 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "عني",
+    "skills": "المهارات",
+    "experience": "الخبرة",
+    "projects": "المشاريع",
+    "testimonials": "الآراء",
+    "contact": "تواصل معي",
+    "resume": "السيرة الذاتية",
+    "quickLinks": "روابط سريعة"
+  },
+  "hero": {
+    "greeting": "مرحباً، أنا",
+    "viewWork": "استعرض أعمالي",
+    "viewResume": "عرض السيرة الذاتية",
+    "tagline": "أبني تجارب ويب عالية الأداء بأحدث التقنيات مع التركيز على تحسين محركات البحث وقابلية التوسع.",
+    "availableFor": "متاح للمشاريع المستقلة"
+  },
+  "about": {
+    "title": "عني",
+    "subtitle": "مطور شغوف يصنع تجارب رقمية مميزة",
+    "hiIm": "مرحباً، أنا",
+    "bio1": "أنا مطور Full-Stack ومتخصص في تحسين محركات البحث، شغوف ببناء تطبيقات ويب عالية الأداء. أجمع الخبرة التقنية مع الفهم العميق لتحسين محركات البحث لتقديم حلول تعمل بشكل رائع وتحقق ترتيباً متميزاً في نتائج البحث.",
+    "bio2": "بخبرة تشمل الـ Full Stack — من واجهات React إلى خوادم Node.js والبنية التحتية السحابية — أساعد الشركات في بناء حضورها الرقمي وتحقيق نمو قابل للقياس.",
+    "downloadCV": "تحميل السيرة الذاتية",
+    "getInTouch": "تواصل معي",
+    "yearsExp": "سنوات خبرة",
+    "projectsDone": "مشروع منجز",
+    "happyClients": "عميل سعيد",
+    "satisfaction": "رضا العملاء",
+    "avgRating": "متوسط التقييم",
+    "technologies": "تقنية",
+    "highlights": {
+      "cleanCode": {
+        "title": "كود نظيف",
+        "desc": "كتابة كود قابل للصيانة والتوسع باتباع أفضل الممارسات"
+      },
+      "teamPlayer": {
+        "title": "لاعب فريق",
+        "desc": "نهج تعاوني مع تواصل واضح وفعّال"
+      },
+      "fastLearner": {
+        "title": "تعلم سريع",
+        "desc": "قدرة سريعة على التكيف وإتقان التقنيات الجديدة"
+      }
+    }
+  },
+  "skills": {
+    "title": "المهارات والتقنيات",
+    "subtitle": "مجموعة أدواتي التقنية ومجالات خبرتي"
+  },
+  "experience": {
+    "title": "الخبرة العملية",
+    "subtitle": "مسيرتي المهنية وأبرز إنجازاتي"
+  },
+  "projects": {
+    "title": "المشاريع المميزة",
+    "subtitle": "عرض لأحدث أعمالي ومشاريعي الجانبية",
+    "otherTitle": "مشاريع أخرى تستحق المشاهدة",
+    "code": "الكود",
+    "demo": "معاينة",
+    "featured": "مميز"
+  },
+  "education": {
+    "title": "التعليم",
+    "subtitle": "خلفيتي الأكاديمية وشهاداتي"
+  },
+  "seo": {
+    "title": "خبرة تحسين محركات البحث",
+    "subtitle": "تحقيق النمو العضوي من خلال السيو التقني والاستراتيجي"
+  },
+  "testimonials": {
+    "title": "ماذا يقول الناس",
+    "subtitle": "آراء العملاء والزملاء الذين عملت معهم",
+    "items": [
+      {
+        "name": "سارة جينكينز",
+        "role": "مديرة التجارة الإلكترونية",
+        "company": "QOUSHA",
+        "content": "قام أحمد بتحويل متجرنا القديم على ووردبريس إلى تحفة فنية باستخدام React. تضاعف معدل التحويل لدينا ثلاث مرات، والأداء مذهل حقاً!"
+      },
+      {
+        "name": "عبدالله منصور",
+        "role": "شريك أول",
+        "company": "مكتب الظفيري للمحاماة",
+        "content": "بطاقة العمل الرقمية التي صممها أحمد لمكتبي القانوني أنيقة وذات هيبة. إنها أول شيء أعرضه على العملاء، وتترك دائماً انطباعاً رائعاً."
+      },
+      {
+        "name": "خالد فيصل",
+        "role": "مدير تقني",
+        "company": "تيك فلو للحلول",
+        "content": "عمل لا يصدق في كشط البيانات لموقع نايس ون. تعامل أحمد مع جلسات API المعقدة وتجاوز حظر 403 باحترافية عالية. متخصص تقني حقيقي."
+      },
+      {
+        "name": "ليلى راشد",
+        "role": "المؤسسة",
+        "company": "فلورال باي داليا",
+        "content": "تجاوز التصميم المتميز لمنصة المجوهرات توقعاتنا. الاهتمام بالتفاصيل في واجهة المستخدم والرسوم المتحركة السلسة لا يعلى عليه."
+      },
+      {
+        "name": "عمر طارق",
+        "role": "مدير العمليات",
+        "company": "زد للتجارة الإلكترونية",
+        "content": "تكامل سلس لمجموعات بيانات منتجاتنا في زد. وفر لنا أحمد مئات الساعات من العمل اليدوي بفضل برامج الأتمتة التي طورها."
+      },
+      {
+        "name": "إيلينا ج.",
+        "role": "مديرة تسويق",
+        "company": "وكالة ستارتوفا",
+        "content": "مهارات عالية في تحسين محركات البحث وتقنيات الويب الحديثة. تم التعامل مع التعريب ثنائي اللغة لمحفظة أعمالنا بشكل مثالي، وحركة المرور العضوية لدينا تنمو يومياً."
+      }
+    ]
+  },
+  "contact": {
+    "title": "تواصل معي",
+    "subtitle": "لديك مشروع في ذهنك؟ لنتحدث!",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "subject": "الموضوع",
+    "message": "الرسالة",
+    "namePlaceholder": "اسمك الكامل",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "subjectPlaceholder": "ما موضوع رسالتك؟",
+    "messagePlaceholder": "أخبرني عن مشروعك...",
+    "send": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال...",
+    "successTitle": "تم إرسال الرسالة!",
+    "successDesc": "تم استلام رسالتك. سأرد عليك في أقرب وقت!",
+    "errorTitle": "فشل الإرسال",
+    "errorDesc": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقاً.",
+    "infoTitle": "لنتواصل",
+    "infoDesc": "أنا دائماً منفتح على مناقشة الفرص الجديدة والأفكار الإبداعية أو طرق إحياء رؤيتك.",
+    "followSocial": "تابعني على وسائل التواصل الاجتماعي"
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة.",
+    "madeWith": "صُنع بـ",
+    "using": "باستخدام React و TypeScript",
+    "connect": "تواصل معي"
+  },
+  "admin": {
+    "login": {
+      "title": "بوابة الإدارة",
+      "subtitle": "إدارة المحفظة",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "emailPlaceholder": "admin@example.com",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "signIn": "تسجيل الدخول",
+      "signingIn": "جارٍ تسجيل الدخول...",
+      "success": "مرحباً بعودتك!",
+      "error": "بيانات الاعتماد غير صالحة. يرجى المحاولة مرة أخرى."
+    },
+    "nav": {
+      "dashboard": "لوحة القيادة",
+      "projects": "المشاريع",
+      "experience": "الخبرة",
+      "education": "التعليم",
+      "skills": "المهارات",
+      "testimonials": "التوصيات",
+      "personalInfo": "المعلومات الشخصية",
+      "messages": "الرسائل",
+      "seoExpertise": "خبرة SEO",
+      "hero": "قسم الهيرو",
+      "viewSite": "عرض الموقع",
+      "logout": "تسجيل الخروج"
+    },
+    "common": {
+      "save": "حفظ التغييرات",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "add": "إضافة",
+      "loading": "جارٍ التحميل...",
+      "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا؟",
+      "titleEn": "العنوان (EN)",
+      "titleAr": "العنوان (AR)",
+      "descEn": "الوصف (EN)",
+      "descAr": "الوصف (AR)",
+      "nameEn": "الاسم (EN)",
+      "nameAr": "الاسم (AR)",
+      "roleEn": "المسمى الوظيفي (EN)",
+      "roleAr": "المسمى الوظيفي (AR)",
+      "contentEn": "المحتوى (EN)",
+      "contentAr": "المحتوى (AR)",
+      "locationEn": "الموقع (EN)",
+      "locationAr": "الموقع (AR)",
+      "degreeEn": "الدرجة العلمية (EN)",
+      "degreeAr": "الدرجة العلمية (AR)",
+      "institutionEn": "المؤسسة (EN)",
+      "institutionAr": "المؤسسة (AR)",
+      "bioEn": "النبذة الشخصية (EN)",
+      "bioAr": "النبذة الشخصية (AR)",
+      "taglineEn": "الشعار (EN)",
+      "taglineAr": "الشعار (AR)",
+      "footerTaglineEn": "شعار التذييل (EN)",
+      "footerTaglineAr": "شعار التذييل (AR)",
+      "infoBoxTitleEn": "عنوان صندوق المعلومات (EN)",
+      "infoBoxTitleAr": "عنوان صندوق المعلومات (AR)",
+      "infoBoxDescEn": "وصف صندوق المعلومات (EN)",
+      "infoBoxDescAr": "وصف صندوق المعلومات (AR)",
+      "descBulletEn": "نقاط الوصف (EN، واحدة في كل سطر)",
+      "descBulletAr": "نقاط الوصف (AR، واحدة في كل سطر)",
+      "period": "الفترة (مثال: 2017 - 2021)",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "location": "الموقع",
+      "githubUrl": "رابط GitHub",
+      "liveDemoUrl": "رابط العرض المباشر",
+      "previewImage": "رابط صورة المعاينة",
+      "addNew": "إضافة جديد",
+      "editExisting": "تعديل الموجود",
+      "saved": "تم الحفظ بنجاح",
+      "deleted": "تم الحذف بنجاح",
+      "saveFailed": "فشل الحفظ",
+      "deleteFailed": "فشل الحذف",
+      "updating": "جاري التحديث...",
+      "adminPanel": "لوحة الإدارة",
+      "logoutSuccess": "تم تسجيل الخروج بنجاح",
+      "logoutError": "خطأ في تسجيل الخروج",
+      "subtitleEn": "العنوان الفرعي (EN)",
+      "subtitleAr": "العنوان الفرعي (AR)",
+      "english": "English",
+      "arabic": "العربية",
+      "placeholders": {
+        "titleEn": "مثال: Aura Marketing SA",
+        "titleAr": "مثال: أورا للتسويق",
+        "descEn": "اشرح المشروع بالإنجليزية...",
+        "descAr": "اشرح المشروع هنا...",
+        "github": "https://github.com/...",
+        "demo": "https://...",
+        "tag": "إضافة تقنية",
+        "degreeEn": "مثال: Bachelor of Computer Science",
+        "degreeAr": "مثال: بكالوريوس علوم الحاسب",
+        "institutionEn": "مثال: University of Dubai",
+        "institutionAr": "مثال: جامعة دبي",
+        "period": "2017 - 2021",
+        "location": "مثال: Dubai, UAE",
+        "descEduEn": "Graduated with honors...",
+        "descEduAr": "تخرجت بمرتبة الشرف...",
+        "roleEn": "مثال: Senior Frontend Developer",
+        "roleAr": "مثال: مطور واجهات عليا",
+        "company": "مثال: Tech Solutions Inc.",
+        "locationEn": "مثال: Dubai, UAE",
+        "locationAr": "مثال: دبي، الإمارات",
+        "descExpEn": "Built responsive UIs...",
+        "descExpAr": "بناء واجهات مستخدم سريعة الاستجابة...",
+        "seoTitleEn": "مثال: Technical SEO",
+        "seoTitleAr": "مثال: سيو تقني",
+        "seoIcon": "مثال: Settings, Zap, Gauge",
+        "seoDescEn": "اشرح هذا التخصص بالإنجليزية...",
+        "seoDescAr": "اشرح هذا التخصص...",
+        "testiNameEn": "مثال: John Doe",
+        "testiNameAr": "مثال: أحمد محمد",
+        "testiRoleEn": "CEO at Corp",
+        "testiRoleAr": "المدير التنفيذي",
+        "testiContentEn": "Amazing work...",
+        "testiContentAr": "عمل رائع...",
+        "skillCatEn": "e.g. Frontend Development",
+        "skillCatAr": "مثال: تطوير الواجهات",
+        "skillsList": "React, TypeScript, Tailwind...",
+        "nameAr": "أدخل الاسم بالعربية",
+        "roleArPlace": "أدخل المسمى الوظيفي بالعربية",
+        "taglineArPlace": "أدخل الشعار بالعربية",
+        "bioArPlace": "أدخل النبذة الشخصية بالعربية",
+        "locationArPlace": "مثال: الإسكندرية، مصر",
+        "more": "أكثر"
+      },
+      "errors": {
+        "invalidId": "معرف المستند غير صالح",
+        "firestoreSave": "خطأ في حفظ البيانات في Firestore",
+        "saveMessage": "خطأ في حفظ الرسالة",
+        "fetchContact": "خطأ في جلب معلومات الاتصال",
+        "submitForm": "خطأ في الإرسال"
+      },
+      "migration": {
+        "starting": "بدء عملية ترحيل البيانات ثنائية اللغة...",
+        "migratingPersonal": "ترحيل المعلومات الشخصية...",
+        "migratingSkills": "ترحيل المهارات...",
+        "migratingProjects": "ترحيل المشاريع...",
+        "migratingExperience": "ترحيل الخبرات...",
+        "migratingEducation": "ترحيل التعليم...",
+        "migratingTestimonials": "ترحيل التوصيات...",
+        "migratingSEO": "ترحيل خبرات السيو...",
+        "complete": "اكتملت عملية ترحيل البيانات بالكامل!",
+        "failed": "فشلت عملية ترحيل البيانات"
+      }
+    },
+    "dashboard": {
+      "welcome": "مرحباً بك",
+      "subtitle": "نظرة عامة على أداء محفظتك ومحتواها",
+      "totalProjects": "إجمالي المشاريع",
+      "totalSkills": "المهارات التقنية",
+      "testimonials": "آراء العملاء",
+      "totalExperience": "خبرة العمل",
+      "clientMessages": "استفسارات جديدة",
+      "quickActions": "إجراءات سريعة",
+      "addProject": "إضافة مشروع جديد",
+      "viewMessages": "عرض الرسائل",
+      "updateProfile": "تحديث الملف الشخصي",
+      "viewLive": "عرض الموقع المباشر",
+      "initDb": "ترحيل البيانات",
+      "initDbDesc": "تهيئة أو إعادة ضبط قاعدة بيانات Firestore ببيانات افتراضية ثنائية اللغة.",
+      "migrate": "ترحيل البيانات",
+      "migrating": "جاري الترحيل...",
+      "migrationConfirm": "هل أنت متأكد من رغبتك في تشغيل ترحيل البيانات؟ سيؤدي ذلك إلى دمج البيانات الافتراضية مع مجموعات Firestore الحالية.",
+      "migrationSuccess": "تم ترحيل قاعدة البيانات بنجاح!",
+      "migrationFailed": "فشل الترحيل"
+    },
+    "projects": {
+      "title": "إدارة المشاريع",
+      "subtitle": "إدارة مشاريع محفظتك ودراسات الحالة",
+      "addNew": "إضافة مشروع جديد",
+      "editTitle": "تعديل المشروع",
+      "newTitle": "مشروع جديد",
+      "featured": "مشروع مميز",
+      "featuredDesc": "عرض هذا المشروع بشكل بارز على الصفحة الرئيسية",
+      "technologies": "التقنيات والأدوات",
+      "tagPlaceholder": "أضف تقنية (اضغط Enter للإضافة)",
+      "applyChanges": "تطبيق التغييرات",
+      "createProject": "إنشاء المشروع",
+      "tags": "التقنيات والوسوم"
+    },
+    "experience": {
+      "title": "إدارة الخبرات",
+      "subtitle": "إدارة تاريخ عملك المهني",
+      "addNew": "إضافة خبرة جديدة"
+    },
+    "education": {
+      "title": "إدارة التعليم",
+      "subtitle": "إدارة خلفيتك الأكاديمية وشهاداتك",
+      "addNew": "إضافة تعليم جديد"
+    },
+    "skills": {
+      "title": "المهارات والخبرات",
+      "subtitle": "إدارة فئات مهاراتك التقنية",
+      "addNew": "إضافة فئة",
+      "skillsLabel": "المهارات (مفصولة بفاصلة)"
+    },
+    "seoExpertise": {
+      "title": "خبرة تحسين محركات البحث",
+      "subtitle": "إدارة مهاراتك في تحسين محركات البحث (SEO)",
+      "addNew": "إضافة خبرة جديدة",
+      "iconName": "اسم الأيقونة (Lucide)"
+    },
+    "testimonials": {
+      "title": "إدارة التوصيات",
+      "subtitle": "إدارة آراء العملاء وتوصياتهم",
+      "addNew": "إضافة توصية جديدة"
+    },
+    "personalInfo": {
+      "title": "المعلومات الشخصية",
+      "subtitle": "تحديث معلوماتك الأساسية والنبذة والروابط",
+      "updateProfile": "تحديث الملف الشخصي",
+      "contactSection": "تفاصيل الاتصال والموقع",
+      "contactSectionContent": "محتوى قسم الاتصال",
+      "footerSocials": "التذييل والروابط الاجتماعية",
+      "emailLabel": "تسمية البريد (EN/AR)",
+      "phoneLabel": "تسمية الهاتف (EN/AR)",
+      "locationLabel": "تسمية الموقع (EN/AR)"
+    },
+    "messages": {
+      "title": "الاستفسارات",
+      "subtitle": "إدارة استفسارات العملاء وطلباتهم",
+      "searchPlaceholder": "البحث في الرسائل...",
+      "active": "نشط",
+      "read": "مقروء",
+      "archivedTab": "مؤرشف",
+      "loading": "جاري تحميل الاستفسارات...",
+      "noMessages": "لا توجد رسائل {{tab}}",
+      "everythingClear": "كل شيء واضح في الوقت الحالي!",
+      "justNow": "الآن",
+      "invalidDate": "تاريخ غير صالح",
+      "errorDate": "خطأ في التاريخ",
+      "archived": "تمت أرشفة الرسالة",
+      "restored": "تمت استعادة الرسالة إلى الوارد",
+      "markAsRead": "تعيين كمقروء",
+      "markAsUnread": "تعيين كغير مقروء",
+      "archive": "أرشفة الرسالة",
+      "restore": "استعادة إلى الوارد",
+      "messageBody": "نص الرسالة",
+      "reply": "الرد عبر البريد"
+    },
+    "hero": {
+      "title": "قسم الهيرو",
+      "subtitle": "إدارة أدوار الكتابة وبطاقات الإحصائيات المعروضة في الصفحة الرئيسية",
+      "rolesTitle": "أدوار الكتابة",
+      "rolesSubtitle": "هذه المسميات تظهر بتأثير الكتابة في قسم الهيرو",
+      "statsTitle": "إحصائيات الهيرو",
+      "statsSubtitle": "العدادات المعروضة في أسفل قسم الهيرو",
+      "addRole": "إضافة دور جديد",
+      "addStat": "إضافة إحصائية جديدة",
+      "statValue": "القيمة (مثال: 4+، 45+، 100%)",
+      "labelEn": "التسمية (EN)",
+      "labelAr": "التسمية (AR)"
+    }
+  },
+  "notFound": {
+    "title": "٤٠٤",
+    "subtitle": "عذراً! الصفحة غير موجودة",
+    "description": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "backHome": "العودة للرئيسية"
+  }
+}

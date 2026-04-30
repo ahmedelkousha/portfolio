@@ -1,0 +1,405 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "resume": "Resume",
+    "quickLinks": "Quick Links"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "viewWork": "View My Work",
+    "viewResume": "View Resume",
+    "tagline": "Building high-performance web experiences with modern technologies and a focus on SEO & scalability.",
+    "availableFor": "Available for freelance projects"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Passionate developer crafting digital experiences",
+    "hiIm": "Hi, I'm",
+    "bio1": "I'm a Full-Stack Developer and SEO Specialist with a passion for building high-performance web applications. I combine technical expertise with a deep understanding of search engine optimization to deliver solutions that not only work beautifully but also rank well.",
+    "bio2": "With experience across the full stack — from React frontends to Node.js backends and cloud infrastructure — I help businesses build their digital presence and achieve measurable growth.",
+    "downloadCV": "Download CV",
+    "getInTouch": "Get in Touch",
+    "yearsExp": "Years Experience",
+    "projectsDone": "Projects Done",
+    "happyClients": "Happy Clients",
+    "satisfaction": "Satisfaction",
+    "avgRating": "Avg Rating",
+    "technologies": "Technologies",
+    "highlights": {
+      "cleanCode": {
+        "title": "Clean Code",
+        "desc": "Writing maintainable, scalable code following best practices"
+      },
+      "teamPlayer": {
+        "title": "Team Player",
+        "desc": "Collaborative approach with clear communication"
+      },
+      "fastLearner": {
+        "title": "Fast Learner",
+        "desc": "Quick to adapt and master new technologies"
+      }
+    }
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "My technical toolkit and areas of expertise"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "My professional journey and career highlights"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "A showcase of my recent work and side projects",
+    "otherTitle": "Other Noteworthy Projects",
+    "code": "Code",
+    "demo": "Demo",
+    "featured": "Featured"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "My academic background and certifications"
+  },
+  "seo": {
+    "title": "SEO Expertise",
+    "subtitle": "Driving organic growth through technical and strategic SEO"
+  },
+  "testimonials": {
+    "title": "What People Say",
+    "subtitle": "Feedback from clients and colleagues I've worked with",
+    "items": [
+      {
+        "name": "Sarah Jenkins",
+        "role": "E-commerce Director",
+        "company": "QOUSHA",
+        "content": "Ahmed transformed our legacy WordPress store into a blazing-fast React masterpiece. Our conversion rate tripled, and the performance is incredible!"
+      },
+      {
+        "name": "Abdullah Mansour",
+        "role": "Senior Partner",
+        "company": "Al-Dhafiri Law Firm",
+        "content": "The digital business card Ahmed built for my law firm is elegant and authoritative. It's the first thing I show clients, and it always leaves a great impression."
+      },
+      {
+        "name": "Khalid Faisal",
+        "role": "CTO",
+        "company": "TechFlow Solutions",
+        "content": "Incredible work on the data scrapers for NiceOne. Ahmed handled complex API sessions and 403 bypasses like a pro. A true technical specialist."
+      },
+      {
+        "name": "Laila Rashid",
+        "role": "Founder",
+        "company": "Floral By Dalia",
+        "content": "The jewelry platform's premium design exceeded our expectations. The attention to detail in the UI and the smooth animations are unmatched."
+      },
+      {
+        "name": "Omar Tarek",
+        "role": "Operations Manager",
+        "company": "Zid E-commerce",
+        "content": "Seamless integration of our product datasets into Zid. Ahmed saved us hundreds of hours of manual work with his automation scripts."
+      },
+      {
+        "name": "Elena G.",
+        "role": "Marketing Director",
+        "company": "Startova Agency",
+        "content": "Highly skilled in SEO and modern web tech. The bilingual localization of our portfolio was handled perfectly, and our organic traffic is growing daily."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have a project in mind? Let's talk!",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "your@email.com",
+    "subjectPlaceholder": "What's this about?",
+    "messagePlaceholder": "Tell me about your project...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message Sent!",
+    "successDesc": "Your message has been received. I'll get back to you soon!",
+    "errorTitle": "Submission Failed",
+    "errorDesc": "Something went wrong. Please try again later.",
+    "infoTitle": "Let's Connect",
+    "infoDesc": "I'm always open to discussing new opportunities, creative ideas or ways to make your vision come to life.",
+    "followSocial": "Follow me on social media"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "using": "using React & TypeScript",
+    "connect": "Connect"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Portal",
+      "subtitle": "Portfolio Management",
+      "email": "Email",
+      "password": "Password",
+      "emailPlaceholder": "admin@example.com",
+      "passwordPlaceholder": "Enter your password",
+      "signIn": "Sign In",
+      "signingIn": "Signing in...",
+      "success": "Welcome back, Admin!",
+      "error": "Invalid credentials. Please try again."
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "projects": "Projects",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "testimonials": "Testimonials",
+      "personalInfo": "Personal Info",
+      "messages": "Messages",
+      "seoExpertise": "SEO Expertise",
+      "hero": "Hero Section",
+      "viewSite": "View Site",
+      "logout": "Logout"
+    },
+    "common": {
+      "save": "Save Changes",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "add": "Add",
+      "loading": "Loading...",
+      "confirmDelete": "Are you sure you want to delete this?",
+      "titleEn": "Title (EN)",
+      "titleAr": "Title (AR)",
+      "descEn": "Description (EN)",
+      "descAr": "Description (AR)",
+      "nameEn": "Name (EN)",
+      "nameAr": "Name (AR)",
+      "roleEn": "Role (EN)",
+      "roleAr": "Role (AR)",
+      "contentEn": "Content (EN)",
+      "contentAr": "Content (AR)",
+      "locationEn": "Location (EN)",
+      "locationAr": "Location (AR)",
+      "degreeEn": "Degree (EN)",
+      "degreeAr": "Degree (AR)",
+      "institutionEn": "Institution (EN)",
+      "institutionAr": "Institution (AR)",
+      "bioEn": "Bio (EN)",
+      "bioAr": "Bio (AR)",
+      "taglineEn": "Tagline (EN)",
+      "taglineAr": "Tagline (AR)",
+      "footerTaglineEn": "Footer Tagline (EN)",
+      "footerTaglineAr": "Footer Tagline (AR)",
+      "infoBoxTitleEn": "Info Box Title (EN)",
+      "infoBoxTitleAr": "Info Box Title (AR)",
+      "infoBoxDescEn": "Info Box Desc (EN)",
+      "infoBoxDescAr": "Info Box Desc (AR)",
+      "descBulletEn": "Description Bullets (EN, one per line)",
+      "descBulletAr": "Description Bullets (AR, one per line)",
+      "period": "Period (e.g. 2017 - 2021)",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "location": "Location",
+      "githubUrl": "GitHub URL",
+      "liveDemoUrl": "Live Demo URL",
+      "previewImage": "Preview Image URL",
+      "addNew": "Add New",
+      "editExisting": "Edit Existing",
+      "saved": "Saved successfully",
+      "deleted": "Deleted successfully",
+      "saveFailed": "Save failed",
+      "deleteFailed": "Delete failed",
+      "updating": "Updating...",
+      "adminPanel": "Admin Panel",
+      "logoutSuccess": "Logged out successfully",
+      "logoutError": "Logout error",
+      "subtitleEn": "Subtitle (EN)",
+      "subtitleAr": "Subtitle (AR)",
+      "english": "English",
+      "arabic": "العربية",
+      "placeholders": {
+        "titleEn": "e.g. Aura Marketing SA",
+        "titleAr": "مثال: أورا للتسويق",
+        "descEn": "Describe the project...",
+        "descAr": "اشرح المشروع هنا...",
+        "github": "https://github.com/...",
+        "demo": "https://...",
+        "tag": "Add a technology",
+        "degreeEn": "e.g. Bachelor of Computer Science",
+        "degreeAr": "مثال: بكالوريوس علوم الحاسب",
+        "institutionEn": "e.g. University of Dubai",
+        "institutionAr": "مثال: جامعة دبي",
+        "period": "2017 - 2021",
+        "location": "e.g. Dubai, UAE",
+        "descEduEn": "Graduated with honors...",
+        "descEduAr": "تخرجت بمرتبة الشرف...",
+        "roleEn": "e.g. Senior Frontend Developer",
+        "roleAr": "مثال: مطور واجهات عليا",
+        "company": "e.g. Tech Solutions Inc.",
+        "locationEn": "e.g. Dubai, UAE",
+        "locationAr": "مثال: دبي، الإمارات",
+        "descExpEn": "Built responsive UIs...",
+        "descExpAr": "بناء واجهات مستخدم سريعة الاستجابة...",
+        "seoTitleEn": "e.g. Technical SEO",
+        "seoTitleAr": "مثال: سيو تقني",
+        "seoIcon": "e.g. Settings, Zap, Gauge",
+        "seoDescEn": "Describe this expertise...",
+        "seoDescAr": "اشرح هذا التخصص...",
+        "testiNameEn": "e.g. John Doe",
+        "testiNameAr": "مثال: أحمد محمد",
+        "testiRoleEn": "CEO at Corp",
+        "testiRoleAr": "المدير التنفيذي",
+        "testiContentEn": "Amazing work...",
+        "testiContentAr": "عمل رائع...",
+        "skillCatEn": "e.g. Frontend Development",
+        "skillCatAr": "مثال: تطوير الواجهات",
+        "skillsList": "React, TypeScript, Tailwind...",
+        "nameAr": "أدخل الاسم بالعربية",
+        "roleArPlace": "أدخل المسمى الوظيفي بالعربية",
+        "taglineArPlace": "أدخل الشعار بالعربية",
+        "bioArPlace": "أدخل النبذة الشخصية بالعربية",
+        "locationArPlace": "مثال: الإسكندرية، مصر",
+        "more": "more"
+      },
+      "errors": {
+        "invalidId": "Invalid document ID",
+        "firestoreSave": "Firestore save error",
+        "saveMessage": "Error saving message",
+        "fetchContact": "Error fetching contact info",
+        "submitForm": "Submission error"
+      },
+      "migration": {
+        "starting": "Starting bilingual migration...",
+        "migratingPersonal": "Migrating personal info...",
+        "migratingSkills": "Migrating skills...",
+        "migratingProjects": "Migrating projects...",
+        "migratingExperience": "Migrating experience...",
+        "migratingEducation": "Migrating education...",
+        "migratingTestimonials": "Migrating testimonials...",
+        "migratingSEO": "Migrating SEO Expertise...",
+        "complete": "Full bilingual migration complete!",
+        "failed": "Migration failed"
+      }
+    },
+    "dashboard": {
+      "welcome": "Welcome back",
+      "subtitle": "Overview of your portfolio performance and content",
+      "totalProjects": "Total Projects",
+      "totalSkills": "Technical Skills",
+      "testimonials": "Client Reviews",
+      "totalExperience": "Work Experience",
+      "clientMessages": "New Inquiries",
+      "quickActions": "Quick Actions",
+      "addProject": "Add New Project",
+      "viewMessages": "View Messages",
+      "updateProfile": "Update Profile",
+      "viewLive": "View Live Site",
+      "initDb": "Database Migration",
+      "initDbDesc": "Initialize or reset your Firestore database with bilingual default data.",
+      "migrate": "Migrate Data",
+      "migrating": "Migrating...",
+      "migrationConfirm": "Are you sure you want to run the data migration? This will merge default data with your current Firestore collections.",
+      "migrationSuccess": "Database migrated successfully!",
+      "migrationFailed": "Migration failed"
+    },
+    "projects": {
+      "title": "Projects Management",
+      "subtitle": "Manage your portfolio projects and case studies",
+      "addNew": "Add New Project",
+      "editTitle": "Edit Project",
+      "newTitle": "New Project",
+      "featured": "Featured Project",
+      "featuredDesc": "Showcase this project prominently on the home page",
+      "technologies": "Technologies & Tools",
+      "tagPlaceholder": "Add a technology (Enter to add)",
+      "applyChanges": "Apply Changes",
+      "createProject": "Create Project",
+      "tags": "Technologies & Tags"
+    },
+    "experience": {
+      "title": "Experience Management",
+      "subtitle": "Manage your professional work history",
+      "addNew": "Add New Experience"
+    },
+    "education": {
+      "title": "Education Management",
+      "subtitle": "Manage your academic background and certifications",
+      "addNew": "Add New Education"
+    },
+    "skills": {
+      "title": "Skills & Expertise",
+      "subtitle": "Manage your technical skill categories",
+      "addNew": "Add Category",
+      "skillsLabel": "Skills (Comma separated)"
+    },
+    "seoExpertise": {
+      "title": "SEO Expertise",
+      "subtitle": "Manage your SEO service areas",
+      "addNew": "Add New Expertise",
+      "iconName": "Icon Name (Lucide)"
+    },
+    "testimonials": {
+      "title": "Testimonials Management",
+      "subtitle": "Manage client feedback and recommendations",
+      "addNew": "Add New Testimonial"
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "subtitle": "Update your basic info, bio, and social links",
+      "updateProfile": "Update Profile",
+      "contactSection": "Contact Details & Location",
+      "contactSectionContent": "Contact Section Content",
+      "footerSocials": "Footer & Social Links",
+      "emailLabel": "Email Label (EN/AR)",
+      "phoneLabel": "Phone Label (EN/AR)",
+      "locationLabel": "Location Label (EN/AR)"
+    },
+    "messages": {
+      "title": "Inquiries",
+      "subtitle": "Manage client inquiries and leads",
+      "searchPlaceholder": "Search messages...",
+      "active": "Active",
+      "read": "Read",
+      "archivedTab": "Archived",
+      "loading": "Loading inquiries...",
+      "noMessages": "No {{tab}} messages",
+      "everythingClear": "Everything is clear for now!",
+      "justNow": "Just now",
+      "invalidDate": "Invalid date",
+      "errorDate": "Error date",
+      "archived": "Message archived",
+      "restored": "Message restored to inbox",
+      "markAsRead": "Mark as read",
+      "markAsUnread": "Mark as unread",
+      "archive": "Archive message",
+      "restore": "Restore to inbox",
+      "messageBody": "Message Body",
+      "reply": "Reply via Email"
+    },
+    "hero": {
+      "title": "Hero Section",
+      "subtitle": "Manage typing roles and statistics cards shown on the home page",
+      "rolesTitle": "Typing Roles",
+      "rolesSubtitle": "These titles appear with a typing effect in the hero section",
+      "statsTitle": "Hero Statistics",
+      "statsSubtitle": "The counters shown at the bottom of the hero section",
+      "addRole": "Add New Role",
+      "addStat": "Add New Stat",
+      "statValue": "Value (e.g. 4+, 45+, 100%)",
+      "labelEn": "Label (EN)",
+      "labelAr": "Label (AR)"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Oops! Page not found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to Home"
+  }
+}

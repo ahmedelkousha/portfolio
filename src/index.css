@@ -413,6 +413,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+<<<<<<< HEAD
 }
 
 /* ==========================================
@@ -460,4 +461,6 @@
 [dir="rtl"] .link-underline::after {
   right: 0;
   left: auto;
+=======
+>>>>>>> origin/main
 }

@@ -107,7 +107,6 @@ const MessagesManager = () => {
     if (activeTab === "active") return !m.read && !m.archived;
     if (activeTab === "read") return m.read && !m.archived;
     if (activeTab === "archived") return m.archived;
-
     return true;
   });
 

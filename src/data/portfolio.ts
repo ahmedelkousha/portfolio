@@ -2,6 +2,7 @@
 
 export const personalInfo = {
   name: "Ahmed Maher",
+<<<<<<< HEAD
   name_en: "Ahmed Maher",
   name_ar: "أحمد ماهر",
   role: "Full-Stack MERN Developer | Next.js Developer | SEO Specialist",
@@ -18,6 +19,14 @@ export const personalInfo = {
   location: "Alexandria, Egypt",
   location_en: "Alexandria, Egypt",
   location_ar: "الإسكندرية، مصر",
+=======
+  role: "Full-Stack MERN Developer | Next.js Developer | SEO Specialist",
+  tagline: "Building SEO-Optimized & High-Performance Web Applications",
+  bio: `I'm a Full Stack Developer (MERN & Next.js) with a strong background in SEO and web performance, focused on building scalable, fast, and search-engine friendly applications. I specialize in developing modern web applications where code quality, performance, and discoverability work together as core architectural principles. I help businesses launch web applications that load fast, scale smoothly, and rank effectively.`,
+  email: "elkoushaservice@gmail.com",
+  phone: "+201011788540",
+  location: "Alexandria, Egypt",
+>>>>>>> origin/main
   github: "https://github.com/ahmedelkousha",
   linkedin: "https://linkedin.com/in/ahmedelkousha",
   skype: "ahmedmayo54",
@@ -26,14 +35,22 @@ export const personalInfo = {
 };
 
 export const stats = [
+<<<<<<< HEAD
   { label: "Years Experience", label_en: "Years Experience", label_ar: "سنوات الخبرة", value: "4+" },
   { label: "Projects Completed", label_en: "Projects Completed", label_ar: "مشروع مكتمل", value: "45+" },
   { label: "Happy Clients", label_en: "Happy Clients", label_ar: "عميل سعيد", value: "35+" },
   { label: "Technologies", label_en: "Technologies", label_ar: "تقنية مستخدمة", value: "15+" },
+=======
+  { label: "Years Experience", value: "4+" },
+  { label: "Projects Completed", value: "45+" },
+  { label: "Happy Clients", value: "35+" },
+  { label: "Technologies", value: "15+" },
+>>>>>>> origin/main
 ];
 
 export const skills = {
   frontend: [
+<<<<<<< HEAD
     { name: "React.js", name_en: "React.js", name_ar: "React.js", level: 95 },
     { name: "Next.js", name_en: "Next.js", name_ar: "Next.js", level: 90 },
     { name: "TypeScript", name_en: "TypeScript", name_ar: "TypeScript", level: 88 },
@@ -64,6 +81,38 @@ export const skills = {
     { name: "Page Speed", name_en: "Page Speed", name_ar: "سرعة الصفحة", level: 90 },
     { name: "Site Architecture", name_en: "Site Architecture", name_ar: "بنية الموقع", level: 85 },
     { name: "Mobile Optimization", name_en: "Mobile Optimization", name_ar: "تحسين الجوال", level: 88 },
+=======
+    { name: "React.js", level: 95 },
+    { name: "Next.js", level: 90 },
+    { name: "TypeScript", level: 88 },
+    { name: "JavaScript (ES6+)", level: 95 },
+    { name: "HTML5", level: 95 },
+    { name: "CSS3", level: 90 },
+    { name: "Tailwind CSS", level: 92 },
+  ],
+  backend: [
+    { name: "Node.js", level: 90 },
+    { name: "Express.js", level: 88 },
+    { name: "MongoDB", level: 85 },
+    { name: "REST APIs", level: 90 },
+    { name: "Auth & Security", level: 85 },
+  ],
+  tools: [
+    { name: "Git & GitHub", level: 88 },
+    { name: "Google Search Console", level: 90 },
+    { name: "Lighthouse", level: 92 },
+    { name: "Postman", level: 88 },
+    { name: "Vercel", level: 85 },
+    { name: "Docker", level: 80 },
+  ],
+  seo: [
+    { name: "Technical SEO", level: 92 },
+    { name: "Core Web Vitals", level: 90 },
+    { name: "Schema.org", level: 88 },
+    { name: "Page Speed", level: 90 },
+    { name: "Site Architecture", level: 85 },
+    { name: "Mobile Optimization", level: 88 },
+>>>>>>> origin/main
   ],
 };
 
@@ -71,61 +120,85 @@ export const seoExpertise = [
   {
     id: 1,
     title: "Technical SEO",
+<<<<<<< HEAD
     title_en: "Technical SEO",
     title_ar: "سيو تقني",
     description: "Site architecture, crawlability, indexability, XML sitemaps, robots.txt optimization, and server-side rendering for search engines.",
     description_en: "Site architecture, crawlability, indexability, XML sitemaps, robots.txt optimization, and server-side rendering for search engines.",
     description_ar: "بنية الموقع، قابلية الزحف، الفهرسة، خرائط XML، تحسين ملف robots.txt، والتحميل من جانب الخادم لمحركات البحث.",
+=======
+    description: "Site architecture, crawlability, indexability, XML sitemaps, robots.txt optimization, and server-side rendering for search engines.",
+>>>>>>> origin/main
     icon: "Settings",
   },
   {
     id: 2,
     title: "Core Web Vitals",
+<<<<<<< HEAD
     title_en: "Core Web Vitals",
     title_ar: "أساسيات حيوية الويب",
     description: "Optimizing LCP, CLS, and INP for better user experience and higher search rankings through performance audits and fixes.",
     description_en: "Optimizing LCP, CLS, and INP for better user experience and higher search rankings through performance audits and fixes.",
     description_ar: "تحسين LCP و CLS و INP لتجربة مستخدم أفضل وتصنيفات بحث أعلى من خلال تدقيق الأداء والإصلاحات.",
+=======
+    description: "Optimizing LCP, CLS, and INP for better user experience and higher search rankings through performance audits and fixes.",
+>>>>>>> origin/main
     icon: "Gauge",
   },
   {
     id: 3,
     title: "Schema.org Markup",
+<<<<<<< HEAD
     title_en: "Schema.org Markup",
     title_ar: "ترميز Schema.org",
     description: "Implementing structured data for rich snippets, knowledge panels, and enhanced search visibility across all content types.",
     description_en: "Implementing structured data for rich snippets, knowledge panels, and enhanced search visibility across all content types.",
     description_ar: "تنفيذ البيانات المهيكلة للمقتطفات الغنية ولوحات المعرفة وتعزيز رؤية البحث عبر جميع أنواع المحتوى.",
+=======
+    description: "Implementing structured data for rich snippets, knowledge panels, and enhanced search visibility across all content types.",
+>>>>>>> origin/main
     icon: "Code",
   },
   {
     id: 4,
     title: "Page Speed",
+<<<<<<< HEAD
     title_en: "Page Speed",
     title_ar: "سرعة الصفحة",
     description: "Image optimization, code splitting, lazy loading, and caching strategies to achieve fast load times across all devices.",
     description_en: "Image optimization, code splitting, lazy loading, and caching strategies to achieve fast load times across all devices.",
     description_ar: "تحسين الصور، تقسيم الكود، التحميل الكسول، واستراتيجيات التخزين المؤقت لتحقيق أوقات تحميل سريعة عبر جميع الأجهزة.",
+=======
+    description: "Image optimization, code splitting, lazy loading, and caching strategies to achieve fast load times across all devices.",
+>>>>>>> origin/main
     icon: "Zap",
   },
   {
     id: 5,
     title: "Site Architecture",
+<<<<<<< HEAD
     title_en: "Site Architecture",
     title_ar: "بنية الموقع",
     description: "URL structure, internal linking, navigation hierarchy, and content organization for optimal crawl efficiency.",
     description_en: "URL structure, internal linking, navigation hierarchy, and content organization for optimal crawl efficiency.",
     description_ar: "هيكل URL، الربط الداخلي، التسلسل الهرمي للملاحة، وتنظيم المحتوى لكفاءة الزحف المثلى.",
+=======
+    description: "URL structure, internal linking, navigation hierarchy, and content organization for optimal crawl efficiency.",
+>>>>>>> origin/main
     icon: "Network",
   },
   {
     id: 6,
     title: "Mobile Optimization",
+<<<<<<< HEAD
     title_en: "Mobile Optimization",
     title_ar: "تحسين الجوال",
     description: "Responsive design, mobile-first indexing compliance, and touch-friendly interfaces for seamless mobile experiences.",
     description_en: "Responsive design, mobile-first indexing compliance, and touch-friendly interfaces for seamless mobile experiences.",
     description_ar: "التصميم المستجيب، الامتثال لفهرسة الأجهزة المحمولة أولاً، والواجهات الصديقة للمس لتجارب جوال سلسة.",
+=======
+    description: "Responsive design, mobile-first indexing compliance, and touch-friendly interfaces for seamless mobile experiences.",
+>>>>>>> origin/main
     icon: "Smartphone",
   },
 ];
@@ -134,12 +207,18 @@ export const projects = [
   {
     id: 1,
     title: "Aura Marketing SA",
+<<<<<<< HEAD
     title_en: "Aura Marketing SA",
     title_ar: "أورا ماركتينج SA",
     description: "Full-service digital marketing agency website with modern design, optimized for SEO and high performance. Built with responsive layouts and engaging user experience.",
     description_en: "Full-service digital marketing agency website with modern design, optimized for SEO and high performance. Built with responsive layouts and engaging user experience.",
     description_ar: "موقع وكالة تسويق رقمي متكامل بتصميم عصري، محسّن لمحركات البحث وعالي الأداء. مبني بتخطيطات متجاوبة وتجربة مستخدم جذابة.",
     image: "/projects/aura.jpg",
+=======
+    description:
+      "Full-service digital marketing agency website with modern design, optimized for SEO and high performance. Built with responsive layouts and engaging user experience.",
+    image: "/placeholder.svg",
+>>>>>>> origin/main
     technologies: ["Next.js", "React", "Tailwind CSS", "SEO", "Performance"],
     github: "https://github.com/ahmedelkousha",
     liveDemo: "https://auramarketingsa.com",
@@ -148,6 +227,7 @@ export const projects = [
   {
     id: 2,
     title: "Pure Touch US",
+<<<<<<< HEAD
     title_en: "Pure Touch US",
     title_ar: "Pure Touch US",
     description: "Premium beauty and wellness e-commerce platform with seamless shopping experience, optimized product pages, and structured data for search visibility.",
@@ -155,12 +235,19 @@ export const projects = [
     description_ar: "منصة تجارة إلكترونية متميزة للجمال والعناية بالصحة مع تجربة تسوق سلسة، وصفحات منتجات محسّنة، وبيانات منظمة لتعزيز الظهور في محركات البحث.",
     image: "/projects/puretouch.jpg",
     technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS", "SEO"],
+=======
+    description:
+      "Premium beauty and wellness e-commerce platform with seamless shopping experience, optimized product pages, and structured data for enhanced search visibility.",
+    image: "/placeholder.svg",
+    technologies: ["React", "Node.js", "E-commerce", "SEO", "Schema.org"],
+>>>>>>> origin/main
     github: "https://github.com/ahmedelkousha",
     liveDemo: "https://puretouchus.com",
     featured: true,
   },
   {
     id: 3,
+<<<<<<< HEAD
     title: "SEO Analytics Dashboard",
     title_en: "SEO Analytics Dashboard",
     title_ar: "لوحة تحليلات SEO",
@@ -169,11 +256,30 @@ export const projects = [
     description_ar: "لوحة تحليلات SEO شاملة تتضمن مراقبة Core Web Vitals، وتتبع الكلمات المفتاحية، وأدوات تدقيق SEO التقني مع مقاييس أداء في الوقت الفعلي.",
     image: "/projects/seo-dashboard.jpg",
     technologies: ["Next.js", "TypeScript", "Recharts", "Google Search Console API"],
+=======
+    title: "SEO Dashboard Analytics",
+    description:
+      "Comprehensive SEO analytics dashboard featuring Core Web Vitals monitoring, keyword tracking, and technical SEO audit tools with real-time performance metrics.",
+    image: "/placeholder.svg",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
+    github: "https://github.com/ahmedelkousha",
+    liveDemo: "#",
+    featured: true,
+  },
+  {
+    id: 4,
+    title: "Real Estate Listing App",
+    description:
+      "Property listing platform with advanced search, filtering, map integration, and SEO-optimized property pages with Schema.org structured data.",
+    image: "/placeholder.svg",
+    technologies: ["React", "Node.js", "MongoDB", "Google Maps API", "REST API"],
+>>>>>>> origin/main
     github: "https://github.com/ahmedelkousha",
     liveDemo: "#",
     featured: false,
   },
   {
+<<<<<<< HEAD
     id: 4,
     title: "Real Estate Listings App",
     title_en: "Real Estate Listings App",
@@ -183,6 +289,14 @@ export const projects = [
     description_ar: "منصة قوائم عقارية مع بحث متقدم وتصفية وتكامل خرائط وصفحات عقارية محسّنة لمحركات البحث مع البيانات المنظمة Schema.org.",
     image: "/projects/real-estate.jpg",
     technologies: ["React", "Firebase", "Google Maps API", "Tailwind CSS"],
+=======
+    id: 5,
+    title: "Task Management System",
+    description:
+      "Collaborative project management tool with real-time updates, team workspaces, and performance-optimized frontend architecture.",
+    image: "/placeholder.svg",
+    technologies: ["MERN Stack", "Socket.io", "JWT Auth", "Tailwind CSS"],
+>>>>>>> origin/main
     github: "https://github.com/ahmedelkousha",
     liveDemo: "#",
     featured: false,
@@ -193,6 +307,7 @@ export const experience = [
   {
     id: 1,
     role: "Full Stack MERN & Next.js Developer",
+<<<<<<< HEAD
     role_en: "Full Stack MERN & Next.js Developer",
     role_ar: "مطور Full Stack MERN وNext.js",
     company: "Freelance",
@@ -201,10 +316,15 @@ export const experience = [
     location: "Remote",
     location_en: "Remote",
     location_ar: "عن بُعد",
+=======
+    company: "Freelance",
+    location: "Remote",
+>>>>>>> origin/main
     period: "2022 - Present",
     description: [
       "Developed full-stack web applications using MongoDB, Express, React, Node.js, and Next.js",
       "Built SEO-optimized applications using Server-Side Rendering (SSR) and Static Site Generation (SSG)",
+<<<<<<< HEAD
       "Optimized application performance and Core Web Vitals metrics (LCP, CLS, INP)",
       "Implemented clean, scalable component architecture and integrated 3rd-party APIs",
     ],
@@ -219,10 +339,18 @@ export const experience = [
       "بنيت تطبيقات محسّنة لمحركات البحث باستخدام Server-Side Rendering (SSR) وStatic Site Generation (SSG)",
       "حسّنت أداء التطبيقات ومقاييس Core Web Vitals (LCP وCLS وINP)",
       "نفّذت بنية مكونات نظيفة وقابلة للتوسع ودمجت واجهات برمجية خارجية",
+=======
+      "Designed and maintained RESTful APIs with secure authentication and authorization",
+      "Improved application performance and Core Web Vitals (LCP, CLS, INP)",
+      "Implemented clean, scalable component architecture",
+      "Integrated third-party APIs and analytics tools",
+      "Collaborated with designers and stakeholders to deliver production-ready solutions",
+>>>>>>> origin/main
     ],
   },
   {
     id: 2,
+<<<<<<< HEAD
     role: "Technical & On-Page SEO Specialist",
     role_en: "Technical & On-Page SEO Specialist",
     role_ar: "متخصص SEO (التقني والداخلي)",
@@ -251,6 +379,20 @@ export const experience = [
       "نفّذت البيانات المنظمة Schema.org لتحسين الظهور في نتائج البحث",
       "حسّنت الأداء العضوي من خلال التحسينات التقنية والداخلية",
     ],
+=======
+    role: "SEO Specialist (Technical & On-Page)",
+    company: "Freelance",
+    location: "Remote",
+    period: "2021 - Present",
+    description: [
+      "Performed technical SEO audits for websites and web applications",
+      "Optimized site structure, internal linking, and URL architecture",
+      "Implemented Schema.org structured data to improve search visibility",
+      "Enhanced page speed and mobile usability",
+      "Worked closely with developers to ensure SEO best practices at code level",
+      "Improved organic performance through technical and on-page optimizations",
+    ],
+>>>>>>> origin/main
   },
 ];
 
@@ -258,6 +400,7 @@ export const education = [
   {
     id: 1,
     degree: "B.Sc. Communication & Electronics Engineering",
+<<<<<<< HEAD
     degree_en: "B.Sc. Communication & Electronics Engineering",
     degree_ar: "بكالوريوس هندسة الاتصالات والإلكترونيات",
     institution: "Misr University for Science & Technology",
@@ -270,12 +413,20 @@ export const education = [
     description: "Focused on digital systems, signal processing, and embedded systems.",
     description_en: "Focused on digital systems, signal processing, and embedded systems.",
     description_ar: "التركيز على الأنظمة الرقمية، معالجة الإشارات، والأنظمة المدمجة.",
+=======
+    institution: "Misr University for Science & Technology",
+    location: "Egypt",
+    period: "2014 - 2019",
+    description:
+      "Focused on digital systems, signal processing, and embedded systems. Developed strong analytical and problem-solving skills applicable to software development.",
+>>>>>>> origin/main
   },
 ];
 
 export const testimonials = [
   {
     id: 1,
+<<<<<<< HEAD
     name: "Sarah Jenkins",
     name_en: "Sarah Jenkins",
     name_ar: "سارة جينكينز",
@@ -286,10 +437,18 @@ export const testimonials = [
     content: "Ahmed transformed our legacy WordPress store into a blazing-fast React masterpiece. Our conversion rate tripled, and the performance is incredible!",
     content_en: "Ahmed transformed our legacy WordPress store into a blazing-fast React masterpiece. Our conversion rate tripled, and the performance is incredible!",
     content_ar: "قام أحمد بتحويل متجرنا القديم على ووردبريس إلى تحفة فنية باستخدام React. تضاعف معدل التحويل لدينا ثلاث مرات، والأداء مذهل حقاً!",
+=======
+    name: "Sarah Johnson",
+    role: "Marketing Director",
+    company: "Aura Marketing SA",
+    content:
+      "Ahmed transformed our online presence completely. Our website now ranks on the first page for all our target keywords, and page load times improved by 60%. His expertise in both development and SEO is truly rare.",
+>>>>>>> origin/main
     rating: 5,
   },
   {
     id: 2,
+<<<<<<< HEAD
     name: "Abdullah Mansour",
     name_en: "Abdullah Mansour",
     name_ar: "عبدالله منصور",
@@ -300,10 +459,18 @@ export const testimonials = [
     content: "The digital business card Ahmed built for my law firm is elegant and authoritative. It's the first thing I show clients, and it always leaves a great impression.",
     content_en: "The digital business card Ahmed built for my law firm is elegant and authoritative. It's the first thing I show clients, and it always leaves a great impression.",
     content_ar: "بطاقة العمل الرقمية التي صممها أحمد لمكتبي القانوني أنيقة وذات هيبة. إنها أول شيء أعرضه على العملاء، وتترك دائماً انطباعاً رائعاً.",
+=======
+    name: "Michael Chen",
+    role: "Founder & CEO",
+    company: "Pure Touch US",
+    content:
+      "Working with Ahmed was a game-changer for our e-commerce platform. He optimized our site architecture, implemented structured data, and our organic traffic increased by 150% within 3 months. Highly recommended!",
+>>>>>>> origin/main
     rating: 5,
   },
   {
     id: 3,
+<<<<<<< HEAD
     name: "Khalid Faisal",
     name_en: "Khalid Faisal",
     name_ar: "خالد فيصل",
@@ -314,10 +481,18 @@ export const testimonials = [
     content: "Incredible work on the data scrapers for NiceOne. Ahmed handled complex API sessions and 403 bypasses like a pro. A true technical specialist.",
     content_en: "Incredible work on the data scrapers for NiceOne. Ahmed handled complex API sessions and 403 bypasses like a pro. A true technical specialist.",
     content_ar: "عمل لا يصدق في كشط البيانات لموقع نايس ون. تعامل أحمد مع جلسات API المعقدة وتجاوز حظر 403 باحترافية عالية. متخصص تقني حقيقي.",
+=======
+    name: "Emily Rodriguez",
+    role: "Product Manager",
+    company: "TechStart Solutions",
+    content:
+      "Ahmed's technical skills are exceptional. He built a complex dashboard application that exceeded our expectations. Clean code, excellent documentation, and delivered ahead of schedule.",
+>>>>>>> origin/main
     rating: 5,
   },
   {
     id: 4,
+<<<<<<< HEAD
     name: "Laila Rashid",
     name_en: "Laila Rashid",
     name_ar: "ليلى راشد",
@@ -356,6 +531,13 @@ export const testimonials = [
     content: "Highly skilled in SEO and modern web tech. The bilingual localization of our portfolio was handled perfectly, and our organic traffic is growing daily.",
     content_en: "Highly skilled in SEO and modern web tech. The bilingual localization of our portfolio was handled perfectly, and our organic traffic is growing daily.",
     content_ar: "مهارات عالية في تحسين محركات البحث وتقنيات الويب الحديثة. تم التعامل مع التعريب ثنائي اللغة لمحفظة أعمالنا بشكل مثالي، وحركة المرور العضوية لدينا تنمو يومياً.",
+=======
+    name: "David Williams",
+    role: "Operations Head",
+    company: "Global Realty Partners",
+    content:
+      "The real estate platform Ahmed developed for us handles thousands of listings seamlessly. His attention to performance optimization and SEO best practices made a significant impact on our business.",
+>>>>>>> origin/main
     rating: 5,
   },
 ];
@@ -370,8 +552,15 @@ export const navLinks = [
 ];
 
 export const openToRoles = [
+<<<<<<< HEAD
   { name: "Full Stack MERN Developer", name_en: "Full Stack MERN Developer", name_ar: "مطور Full Stack MERN" },
   { name: "Frontend Developer (React/Next.js)", name_en: "Frontend Developer (React/Next.js)", name_ar: "مطور واجهات أمامية" },
   { name: "Backend Developer (Node.js)", name_en: "Backend Developer (Node.js)", name_ar: "مطور واجهات خلفية" },
   { name: "Technical SEO / Web Performance Specialist", name_en: "Technical SEO / Web Performance Specialist", name_ar: "أخصائي سيو تقني وأداء الويب" },
+=======
+  "Full Stack MERN Developer",
+  "Frontend Developer (React/Next.js)",
+  "Backend Developer (Node.js)",
+  "Technical SEO / Web Performance Specialist",
+>>>>>>> origin/main
 ];

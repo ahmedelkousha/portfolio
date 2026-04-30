@@ -3,7 +3,6 @@ import { GraduationCap, Calendar, MapPin, Loader2 } from "lucide-react";
 import { education as staticEducation } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
 import { usePortfolioData } from "@/hooks/usePortfolioData";
-<<<<<<< HEAD
 import { localizeField } from "@/services/portfolioService";
 import { useTranslation } from "react-i18next";
 import { toArabicNumerals } from "@/lib/numerals";
@@ -23,12 +22,6 @@ export const Education = () => {
     description: toArabicNumerals(localizeField(edu, "description", lang), lang),
     location: toArabicNumerals(edu.location, lang),
   }));
-=======
-
-export const Education = () => {
-  const { data: dbEducation, loading } = usePortfolioData("education");
-  const displayEducation = dbEducation.length > 0 ? dbEducation : staticEducation;
->>>>>>> origin/main
 
   if (loading && dbEducation.length === 0) {
     return (
@@ -42,21 +35,12 @@ export const Education = () => {
     <section className="py-20 bg-muted/30">
       <div className="section-container">
         <SectionHeading
-<<<<<<< HEAD
           title={t("education.title")}
           subtitle={t("education.subtitle")}
         />
 
         <div className="max-w-2xl mx-auto">
           {displayEducation.map((edu: any, index: number) => (
-=======
-          title="Education"
-          subtitle="My academic background and qualifications"
-        />
-
-        <div className="max-w-2xl mx-auto">
-          {displayEducation.map((edu, index) => (
->>>>>>> origin/main
             <motion.div
               key={edu.id}
               initial={{ opacity: 0, y: 30 }}
@@ -65,10 +49,6 @@ export const Education = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="glass-card p-8 rounded-2xl hover:hover-card mb-6"
             >
-<<<<<<< HEAD
-=======
-              {/* Icon */}
->>>>>>> origin/main
               <div className="flex items-start gap-6">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -81,7 +61,6 @@ export const Education = () => {
                 </motion.div>
 
                 <div className="flex-1">
-<<<<<<< HEAD
                   <h3 className="sm:text-xl text-lg font-bold text-foreground mb-2">
                     {edu.degree}
                   </h3>
@@ -90,21 +69,6 @@ export const Education = () => {
                   </p>
                   <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1" dir="ltr">
-=======
-                  {/* Degree */}
-                  <h3 className="sm:text-xl text-lg font-bold text-foreground mb-2">
-                    {edu.degree}
-                  </h3>
-
-                  {/* Institution */}
-                  <p className="sm:text-lg text-base text-primary font-semibold mb-3">
-                    {edu.institution}
-                  </p>
-
-                  {/* Meta Info */}
-                  <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
->>>>>>> origin/main
                       <Calendar className="h-4 w-4" />
                       {edu.period}
                     </span>
@@ -113,11 +77,6 @@ export const Education = () => {
                       {edu.location}
                     </span>
                   </div>
-<<<<<<< HEAD
-=======
-
-                  {/* Description */}
->>>>>>> origin/main
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {edu.description}
                   </p>

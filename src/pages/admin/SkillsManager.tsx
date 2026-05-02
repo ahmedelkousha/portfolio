@@ -30,10 +30,18 @@ const SkillsManager = () => {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     let newCategories = [...categories];
+
+    const processedData = {
+      ...formData,
+      skills: typeof formData.skills === 'string'
+        ? formData.skills.split(",").map((s: string) => s.trim()).filter(Boolean)
+        : formData.skills
+    };
+
     if (editingIndex !== null) {
-      newCategories[editingIndex] = formData;
+      newCategories[editingIndex] = processedData;
     } else {
-      newCategories.push(formData);
+      newCategories.push(processedData);
     }
 
     try {
@@ -118,8 +126,8 @@ const SkillsManager = () => {
                 <div>
                   <label className={labelCls}>{t("admin.skills.skillsLabel")}</label>
                   <textarea
-                    value={Array.isArray(formData.skills) ? formData.skills.join(", ") : formData.skills || ""}
-                    onChange={(e) => setFormData({ ...formData, skills: e.target.value.split(",").map((s: string) => s.trim()).filter(Boolean) })}
+                    value={typeof formData.skills === 'string' ? formData.skills : (Array.isArray(formData.skills) ? formData.skills.map((s: any) => typeof s === 'string' ? s : (s.name || s.name_en || "")).join(", ") : formData.skills || "")}
+                    onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
                     className={`${inputCls} h-24`}
                     placeholder={t("admin.common.placeholders.skillsList")}
                   />

@@ -283,6 +283,7 @@
         "migratingEducation": "Migrating education...",
         "migratingTestimonials": "Migrating testimonials...",
         "migratingSEO": "Migrating SEO Expertise...",
+        "migratingMessages": "Migrating messages...",
         "complete": "Full bilingual migration complete!",
         "failed": "Migration failed"
       }
@@ -380,7 +381,8 @@
       "archive": "Archive message",
       "restore": "Restore to inbox",
       "messageBody": "Message Body",
-      "reply": "Reply via Email"
+      "reply": "Reply via Email",
+      "newMessageReceived": "New message received!"
     },
     "hero": {
       "title": "Hero Section",

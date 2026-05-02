@@ -18,8 +18,9 @@ import {
   Globe,
   Heading,
 } from "lucide-react";
-import { useState } from "react";
-import { auth } from "@/lib/firebase";
+import { useState, useEffect } from "react";
+import { auth, db } from "@/lib/firebase";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +34,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang || "en";
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [unreadMessages, setUnreadMessages] = useState(0);
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -40,6 +42,42 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (loading) return null;
   if (!currentUser) return <Navigate to={`/${currentLang}/login`} />;
+
+  useEffect(() => {
+    if (!currentUser) return;
+    const q = query(collection(db, "messages"));
+    let isFirstSnapshot = true;
+    
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      let count = 0;
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (!data.read && !data.archived) {
+          count++;
+        }
+      });
+      setUnreadMessages(count);
+
+      if (isFirstSnapshot) {
+        isFirstSnapshot = false;
+        return;
+      }
+      
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          // Play sound
+          const audio = new Audio("/notification.wav");
+          audio.play().catch(e => console.log("Audio play failed:", e));
+          
+          toast.info(t("admin.messages.newMessageReceived") || "New message received!", {
+            icon: '🔔',
+          });
+        }
+      });
+    });
+    
+    return () => unsubscribe();
+  }, [currentUser, t]);
 
   const handleLogout = async () => {
     try {
@@ -166,7 +204,14 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                   />
                 )}
 
-                <Icon size={20} className={`${isActive ? "relative z-10" : "group-hover:text-primary"} shrink-0`} />
+                <div className="relative flex items-center justify-center shrink-0">
+                  <Icon size={20} className={`${isActive ? "relative z-10" : "group-hover:text-primary"}`} />
+                  {item.path.endsWith('/messages') && unreadMessages > 0 && (
+                    <span className="absolute -top-2 -right-2 w-[1.2rem] h-[1.2rem] bg-destructive text-destructive-foreground text-[10px] font-normal flex items-center justify-center rounded-full z-20">
+                      {unreadMessages > 9 ? "9+" : unreadMessages}
+                    </span>
+                  )}
+                </div>
                 {isSidebarOpen && (
                   <>
                     <span className="font-medium text-sm whitespace-nowrap relative z-10">{item.name}</span>

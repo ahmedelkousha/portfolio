@@ -283,6 +283,7 @@
         "migratingEducation": "ترحيل التعليم...",
         "migratingTestimonials": "ترحيل التوصيات...",
         "migratingSEO": "ترحيل خبرات السيو...",
+        "migratingMessages": "ترحيل الرسائل...",
         "complete": "اكتملت عملية ترحيل البيانات بالكامل!",
         "failed": "فشلت عملية ترحيل البيانات"
       }
@@ -380,7 +381,8 @@
       "archive": "أرشفة الرسالة",
       "restore": "استعادة إلى الوارد",
       "messageBody": "نص الرسالة",
-      "reply": "الرد عبر البريد"
+      "reply": "الرد عبر البريد",
+      "newMessageReceived": "تم استلام رسالة جديدة!"
     },
     "hero": {
       "title": "قسم الهيرو",
